@@ -1,0 +1,6 @@
+{
+  "name": "Conexão Piana",
+  "description": "Uma infraestrutura social Web3 voltada ao acolhimento emocional seguro de mães de crianças atípicas, utilizando blockchain como camada de confiança e inteligência artificial responsável.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
