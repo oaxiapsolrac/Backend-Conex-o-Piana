@@ -199,7 +199,7 @@ export default function CentralTransparencia({
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <span className="inline-flex items-center gap-1.5 bg-[#1877f2]/10 text-[#1877f2] text-[10.5px] px-2.5 py-1 rounded-full font-sans font-bold uppercase tracking-wider mb-2.5">
-              <Code className="w-3.5 h-3.5" /> Tela 6 • Garantia de Privacidade e Segurança
+              <Code className="w-3.5 h-3.5" /> Garantia de Privacidade e Segurança
             </span>
             <h1 className="text-2xl md:text-3xl font-sans font-black tracking-tight text-slate-900 leading-tight">
               Sua Privacidade Protegida e Inviolável

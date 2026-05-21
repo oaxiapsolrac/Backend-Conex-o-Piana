@@ -43,7 +43,7 @@ const ALL_BADGES = [
     icon: FileText,
     color: 'from-pink-400 via-pink-300 to-pink-500',
     colorText: 'text-pink-900',
-    colorBorder: 'border-pink-200',
+    colorBorder: 'bordcer-pink-200',
     bgSoft: 'bg-pink-500/5',
   },
   {
@@ -264,6 +264,23 @@ export default function FeedComunitario({
       const resp = await fetch('/api/posts');
       const data = await resp.json();
       setPosts(data);
+
+      // Pre-fetch interactions for each post to populate the comment counts on load
+      if (Array.isArray(data)) {
+        const interactionsMap: Record<string, Interaction[]> = {};
+        await Promise.all(
+          data.map(async (post: Post) => {
+            try {
+              const res = await fetch(`/api/posts/${post.id}/interactions`);
+              const interactions = await res.json();
+              interactionsMap[post.id] = interactions;
+            } catch (err) {
+              console.error(`Error fetching pre-load interactions for post ${post.id}:`, err);
+            }
+          })
+        );
+        setPostInteractions(prev => ({ ...prev, ...interactionsMap }));
+      }
     } catch (e) {
       console.error('Error fetching posts:', e);
     } finally {
@@ -320,20 +337,8 @@ export default function FeedComunitario({
       });
       const data = await resp.json();
       if (!data.error) {
-        setPosts([data.post, ...posts]);
+        setPosts([data, ...posts]);
         setNewPostContent('');
-        
-        // Check if narradora badge was awarded
-        if (data.narratoraBadge && onNewProofEmitted) {
-          onNewProofEmitted({
-            userId: user.uid,
-            badge: 'narradora',
-            solanaTx: data.narratoraBadge.solanaTx,
-            createdAt: data.narratoraBadge.createdAt,
-            status: data.narratoraBadge.status,
-          });
-        }
-
         if (syncProofs) {
           syncProofs().catch(e => console.error('Error syncing narrative proof:', e));
         }
@@ -390,26 +395,17 @@ export default function FeedComunitario({
         });
       }
 
-      // Check if empatica badge was awarded
-      if (data.empatica_badge && data.empatica_badge.issued) {
-        onNewProofEmitted({
-          userId: user.uid,
-          badge: 'empatica',
-          solanaTx: data.empatica_badge.solanaTx,
-          createdAt: new Date().toISOString(),
-          status: simulateSolanaError ? 'pending' : 'synced',
-        });
-      }
-
       if (syncProofs) {
         syncProofs().catch(e => console.error('Error syncing dynamic interaction proof:', e));
       }
 
-      // Automatically sync expanded thread if open
-      if (expandedPostId === activeSupportPost.id) {
+      // Automatically sync interactions for that post so the comment count gets updated immediately
+      try {
         const updateRes = await fetch(`/api/posts/${activeSupportPost.id}/interactions`);
         const updateData = await updateRes.json();
         setPostInteractions(prev => ({ ...prev, [activeSupportPost.id]: updateData }));
+      } catch (err) {
+        console.error('Error auto-syncing post interactions on submit:', err);
       }
     } catch (e) {
       console.error('Error submitting support interaction:', e);
