@@ -1,0 +1,511 @@
+{
+  "users": [
+    {
+      "uid": "piana_uid_e3luyez632q1779306373771",
+      "did": "PIANA-D2132536",
+      "createdAt": "2026-05-20T19:46:13.796Z"
+    },
+    {
+      "uid": "piana_uid_8vt2xcocdgl1779306373772",
+      "did": "PIANA-4E086EAF",
+      "createdAt": "2026-05-20T19:46:13.799Z"
+    },
+    {
+      "uid": "piana_uid_2kxllrtcw1u1779334351049",
+      "did": "PIANA-A664D888",
+      "createdAt": "2026-05-21T03:32:31.058Z"
+    },
+    {
+      "uid": "piana_uid_ib4vitrqcfb1779334351051",
+      "did": "PIANA-897D8EF5",
+      "createdAt": "2026-05-21T03:32:31.062Z"
+    },
+    {
+      "uid": "piana_uid_ivfje6dbu3o1779334500708",
+      "did": "PIANA-F9F0FC85",
+      "createdAt": "2026-05-21T03:35:00.716Z"
+    },
+    {
+      "uid": "piana_uid_p0dps2hn6qp1779334500710",
+      "did": "PIANA-7C22040B",
+      "createdAt": "2026-05-21T03:35:00.719Z"
+    },
+    {
+      "uid": "piana_uid_nut9mvon9o1779335327250",
+      "did": "PIANA-5E51A957",
+      "createdAt": "2026-05-21T03:48:47.258Z"
+    },
+    {
+      "uid": "piana_uid_lmk3o46fl7s1779335327251",
+      "did": "PIANA-47A86210",
+      "createdAt": "2026-05-21T03:48:47.260Z"
+    },
+    {
+      "uid": "piana_uid_xcrwwv4s1td1779335557735",
+      "did": "PIANA-BBDCBA29",
+      "createdAt": "2026-05-21T03:52:37.744Z"
+    },
+    {
+      "uid": "piana_uid_01xuak6k1pri1779335557737",
+      "did": "PIANA-A74017DD",
+      "createdAt": "2026-05-21T03:52:37.746Z"
+    },
+    {
+      "uid": "piana_uid_vl892ylqd071779335685594",
+      "did": "PIANA-628949D4",
+      "createdAt": "2026-05-21T03:54:45.603Z"
+    },
+    {
+      "uid": "piana_uid_f3isfho1aeu1779335685595",
+      "did": "PIANA-146D738E",
+      "createdAt": "2026-05-21T03:54:45.607Z"
+    },
+    {
+      "uid": "piana_uid_r36jqz41131779336275790",
+      "did": "PIANA-6DCAEA77",
+      "createdAt": "2026-05-21T04:04:35.802Z"
+    },
+    {
+      "uid": "piana_uid_yfjh1yq6k6g1779336275792",
+      "did": "PIANA-0A63223C",
+      "createdAt": "2026-05-21T04:04:35.805Z"
+    },
+    {
+      "uid": "piana_uid_zvg29jrysdo1779336511296",
+      "did": "PIANA-1486266C",
+      "createdAt": "2026-05-21T04:08:31.307Z"
+    },
+    {
+      "uid": "piana_uid_k6bj1yqy7u1779336511298",
+      "did": "PIANA-52A3F057",
+      "createdAt": "2026-05-21T04:08:31.310Z"
+    },
+    {
+      "uid": "piana_uid_qv7s5i72wk1779336821235",
+      "did": "PIANA-59CF0D81",
+      "createdAt": "2026-05-21T04:13:41.243Z"
+    },
+    {
+      "uid": "piana_uid_outyx65ir11779336821237",
+      "did": "PIANA-A1BA5CF7",
+      "createdAt": "2026-05-21T04:13:41.246Z"
+    },
+    {
+      "uid": "piana_uid_z9ljcee7b91779337534667",
+      "did": "PIANA-CDF3328D",
+      "createdAt": "2026-05-21T04:25:34.673Z"
+    },
+    {
+      "uid": "piana_uid_linxsil9lsg1779337534666",
+      "did": "PIANA-20B3BA8F",
+      "createdAt": "2026-05-21T04:25:34.676Z"
+    },
+    {
+      "uid": "piana_uid_ccr7toqf2pj1779337868013",
+      "did": "PIANA-293ACEBA",
+      "createdAt": "2026-05-21T04:31:08.021Z"
+    },
+    {
+      "uid": "piana_uid_dnxzigxnc0r1779337868015",
+      "did": "PIANA-DB575E95",
+      "createdAt": "2026-05-21T04:31:08.024Z"
+    }
+  ],
+  "consents": [
+    {
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "hash": "8a6e10285b28d1c7b1c1adb5e218f9e211c99f12e3f149fc7d1ea7626dd81697",
+      "transactionId": "pending_sync_645fba9e1154d31a",
+      "createdAt": "2026-05-20T19:46:21.416Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "hash": "530c9502ed9bdba97e29ee74546ac6befa24c62d3db5f14dd6bd1769f1e5c06b",
+      "transactionId": "pending_sync_8cf6e518c957238f",
+      "createdAt": "2026-05-20T19:46:21.420Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_ib4vitrqcfb1779334351051",
+      "hash": "a4105c10369751089d529c84c684681339c18d6279ce45cc8c7cece1d6cfe53f",
+      "transactionId": "pending_sync_63432a0947f047b3",
+      "createdAt": "2026-05-21T03:32:40.716Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_ib4vitrqcfb1779334351051",
+      "hash": "5e357989f648c5ba29cca0deb27bdbf1807c45f31533e423ef3e98fd77cb89f1",
+      "transactionId": "pending_sync_fc2d0a86e4184e12",
+      "createdAt": "2026-05-21T03:32:40.721Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_p0dps2hn6qp1779334500710",
+      "hash": "c3910523c7f652eaee37e865c741dd1c0fafeb4dc8038250477ea9ffd05885c7",
+      "transactionId": "pending_sync_9dc98dcebaf1606a",
+      "createdAt": "2026-05-21T03:35:10.497Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_p0dps2hn6qp1779334500710",
+      "hash": "46634a23a6ec9a550f2a154d09c2567dc59f003da6c3d02c92fe9a7683b2e8b2",
+      "transactionId": "pending_sync_c5a6706840510d10",
+      "createdAt": "2026-05-21T03:35:10.502Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_lmk3o46fl7s1779335327251",
+      "hash": "ea8834ae4fb551985195206c85e305bdbd87e8897a4ff601a9521de5f14e4bc5",
+      "transactionId": "pending_sync_1b1a1d3eaf4a51d2",
+      "createdAt": "2026-05-21T03:49:03.258Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_lmk3o46fl7s1779335327251",
+      "hash": "ec78c6402b27707b0911957b97552f3f39adb5fa8c7a22575a944d7117e55f73",
+      "transactionId": "pending_sync_d988337387ea09fe",
+      "createdAt": "2026-05-21T03:49:03.271Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_01xuak6k1pri1779335557737",
+      "hash": "098e8e18f1cf057e4ea3ec731ca704fe75ec438e289d485a4f2c3a088d8707e9",
+      "transactionId": "pending_sync_0d01d4201e3cd343",
+      "createdAt": "2026-05-21T03:52:49.519Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_01xuak6k1pri1779335557737",
+      "hash": "06ef4e5b7461b6e3a7bb54f01976f86b8e728329d9b9007b44f6960d760894e1",
+      "transactionId": "pending_sync_e5ae5d331170748e",
+      "createdAt": "2026-05-21T03:52:49.522Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_f3isfho1aeu1779335685595",
+      "hash": "3d887acdef8d986926a8a936055350c9220f82f87aa0d498b808a3704615604b",
+      "transactionId": "pending_sync_31d8de206c365370",
+      "createdAt": "2026-05-21T03:54:53.990Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_f3isfho1aeu1779335685595",
+      "hash": "6520d86ecbcff92f965ff1c586d28315f961052c7ecbecb21c687dd12a86620a",
+      "transactionId": "pending_sync_088773b98a6aa0c1",
+      "createdAt": "2026-05-21T03:54:54.084Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_yfjh1yq6k6g1779336275792",
+      "hash": "8c31bbb6f42399de4eff9f9976648d6eedc9ecee65e01031f454657f45d92e91",
+      "transactionId": "pending_sync_b3cc5912728d8d05",
+      "createdAt": "2026-05-21T04:04:44.494Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_yfjh1yq6k6g1779336275792",
+      "hash": "cc4e098430653cff834bd28c4c32bac6b57ccc5ecfa96f439e85e600153b3a12",
+      "transactionId": "pending_sync_74dd9506336c46ee",
+      "createdAt": "2026-05-21T04:04:44.580Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_k6bj1yqy7u1779336511298",
+      "hash": "c9291dbf9d3c604534b0aad6140e22a04e3897a0c491f3778f9690122661736b",
+      "transactionId": "pending_sync_58e56516fddf5a37",
+      "createdAt": "2026-05-21T04:08:38.054Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_k6bj1yqy7u1779336511298",
+      "hash": "898dcea7efb492902dc875caa24784694525e7ea8b8d5e090129768956afe73a",
+      "transactionId": "pending_sync_fdc99108cc1ce436",
+      "createdAt": "2026-05-21T04:08:38.140Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_outyx65ir11779336821237",
+      "hash": "c168e099a5e27ea1986cf2e83a5b1b5fa303da1b12e08cd29660ac99d4ce5a50",
+      "transactionId": "pending_sync_69ff1cb768b0b5ad",
+      "createdAt": "2026-05-21T04:13:49.187Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_outyx65ir11779336821237",
+      "hash": "87b9bb9fe9a37dfa7875c78a1defa0130fe8b6ac69c8fcf099946a9c0a0f2da8",
+      "transactionId": "pending_sync_f7125ce667fee94d",
+      "createdAt": "2026-05-21T04:13:49.277Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_linxsil9lsg1779337534666",
+      "hash": "8c0bcbb3994db8eabf8df4b985258b559c192f3b45ee16e0e2d43907ed89578e",
+      "transactionId": "pending_sync_05353ff4f4b39f06",
+      "createdAt": "2026-05-21T04:25:46.323Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_linxsil9lsg1779337534666",
+      "hash": "f915906f1281cf04a0403030bfe8a10cff4aac3ff7c1571fbeda1d6e1aa1665b",
+      "transactionId": "pending_sync_a5d6453213120b29",
+      "createdAt": "2026-05-21T04:25:46.408Z",
+      "status": "pending"
+    },
+    {
+      "userId": "piana_uid_dnxzigxnc0r1779337868015",
+      "hash": "4be6b26e3409f1552f0fc69e44c59b13af8c874f5488c561815a8ea23d1215e6",
+      "transactionId": "3dWQK9xj2SgeyrDCNzLhq8FUCZnZruZKiCYy1obihLgEvpWXWdqK8p7dRawF1otaPJcnJxTmUuqEj9cHqAZRqQst",
+      "createdAt": "2026-05-21T04:31:15.600Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_dnxzigxnc0r1779337868015",
+      "hash": "9aaff82a8847d352e3d989530bbd9aebd0e14332564e20ff20409b70e0623eb4",
+      "transactionId": "4zbnhaGM67rBb8Zev6G7CCNnVN2ygCdZfNyEugFc5qjmqrPoGNm3YBb4XsKm5JsrVtKtkJivdv7VKuyQhRZAooWy",
+      "createdAt": "2026-05-21T04:31:15.682Z",
+      "status": "synced"
+    }
+  ],
+  "posts": [
+    {
+      "id": "859126b5-cfe2-4a9f-bc95-b642aa05c783",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "authorDid": "PIANA-4E086EAF",
+      "content": "[DESABAFO] ola\n",
+      "createdAt": "2026-05-20T19:46:26.584Z"
+    },
+    {
+      "id": "ab769454-62d6-4bb6-9cf5-789792e5c8f0",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "authorDid": "PIANA-4E086EAF",
+      "content": "[DESABAFO] meu nome é maria\n",
+      "createdAt": "2026-05-20T19:46:31.784Z"
+    },
+    {
+      "id": "9f9b8be6-034a-4b9d-8086-e00b7e2587f1",
+      "userId": "piana_uid_p0dps2hn6qp1779334500710",
+      "authorDid": "PIANA-7C22040B",
+      "content": "[DESABAFO] ola\n",
+      "createdAt": "2026-05-21T03:35:35.981Z"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "813f6686-468d-497a-95c2-aadef436555b",
+      "postId": "ab769454-62d6-4bb6-9cf5-789792e5c8f0",
+      "senderId": "piana_uid_p0dps2hn6qp1779334500710",
+      "senderDid": "PIANA-7C22040B",
+      "receiverId": "piana_uid_8vt2xcocdgl1779306373772",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T03:35:42.889Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "pending_poc_cdc1c4b1d8677d80"
+      }
+    },
+    {
+      "id": "4fb2f777-087e-4090-9543-21eee24ef769",
+      "postId": "9f9b8be6-034a-4b9d-8086-e00b7e2587f1",
+      "senderId": "piana_uid_lmk3o46fl7s1779335327251",
+      "senderDid": "PIANA-47A86210",
+      "receiverId": "piana_uid_p0dps2hn6qp1779334500710",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T03:49:16.946Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "pending_poc_246d0e11746e41f4"
+      }
+    },
+    {
+      "id": "a4611c57-a8f5-46f9-b28a-9f686e93db17",
+      "postId": "9f9b8be6-034a-4b9d-8086-e00b7e2587f1",
+      "senderId": "piana_uid_f3isfho1aeu1779335685595",
+      "senderDid": "PIANA-146D738E",
+      "receiverId": "piana_uid_p0dps2hn6qp1779334500710",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T03:55:00.310Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "pending_poc_3166cf52dbb017cd"
+      }
+    },
+    {
+      "id": "e7f4fb33-497a-4e6e-b76e-918c15a73992",
+      "postId": "9f9b8be6-034a-4b9d-8086-e00b7e2587f1",
+      "senderId": "piana_uid_f3isfho1aeu1779335685595",
+      "senderDid": "PIANA-146D738E",
+      "receiverId": "piana_uid_p0dps2hn6qp1779334500710",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T04:04:00.722Z",
+      "ai_context": "O acolhimento mútuo valida o amor materno, tecendo uma rede de empatia que afasta a solidão e semeia esperança na jornada atípica.",
+      "proof_of_care": null
+    },
+    {
+      "id": "7d7d508b-5033-41a4-97be-4a123e462324",
+      "postId": "ab769454-62d6-4bb6-9cf5-789792e5c8f0",
+      "senderId": "piana_uid_f3isfho1aeu1779335685595",
+      "senderDid": "PIANA-146D738E",
+      "receiverId": "piana_uid_8vt2xcocdgl1779306373772",
+      "message": "Não carregue toda a culpa do mundo nas costas. Descanse seu espírito, seu esforço é lindo.",
+      "createdAt": "2026-05-21T04:04:13.723Z",
+      "ai_context": "Esse abraço em palavras acolhe a dor e rompe o isolamento, criando uma rede de afeto que divide o peso da jornada e renova a esperança coletiva.",
+      "proof_of_care": null
+    },
+    {
+      "id": "8b007e42-81fb-437b-81ea-0fc82173c535",
+      "postId": "9f9b8be6-034a-4b9d-8086-e00b7e2587f1",
+      "senderId": "piana_uid_dnxzigxnc0r1779337868015",
+      "senderDid": "PIANA-DB575E95",
+      "receiverId": "piana_uid_p0dps2hn6qp1779334500710",
+      "message": "Você é uma mãe maravilhosa e sua dedicação cura e apoia. Estou aqui por você.",
+      "createdAt": "2026-05-21T04:32:18.206Z",
+      "ai_context": "Esse acolhimento entre mães atípicas rompe o isolamento. Ao validarem suas lutas, criam uma rede de afeto que fortalece e renova a esperança mútua.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "4TTTqBkKB7kfxM682AVTZsLuJHRZFCvjTmzHCL4Bbs2CergZLsZaWCu6Dr5mfisXemmqyJxNvcXRtf52QpaMHYzi"
+      }
+    }
+  ],
+  "proof_of_care": [
+    {
+      "id": "3bfc5e49-8d91-415a-b72b-57821bd85036",
+      "userId": "piana_uid_p0dps2hn6qp1779334500710",
+      "badge": "acolhedora",
+      "solanaTx": "pending_poc_cdc1c4b1d8677d80",
+      "createdAt": "2026-05-21T03:35:42.887Z",
+      "status": "pending"
+    },
+    {
+      "id": "21bbd745-a7a2-4986-89bf-1cf5d648b750",
+      "userId": "piana_uid_lmk3o46fl7s1779335327251",
+      "badge": "acolhedora",
+      "solanaTx": "pending_poc_246d0e11746e41f4",
+      "createdAt": "2026-05-21T03:49:16.944Z",
+      "status": "pending"
+    },
+    {
+      "id": "d57d19db-3ff6-4805-be67-ad0b8d617978",
+      "userId": "piana_uid_f3isfho1aeu1779335685595",
+      "badge": "acolhedora",
+      "solanaTx": "pending_poc_3166cf52dbb017cd",
+      "createdAt": "2026-05-21T03:55:00.306Z",
+      "status": "pending"
+    },
+    {
+      "id": "f6733d66-ac7a-468d-aece-e7ed6af9f011",
+      "userId": "piana_uid_dnxzigxnc0r1779337868015",
+      "badge": "acolhedora",
+      "solanaTx": "4TTTqBkKB7kfxM682AVTZsLuJHRZFCvjTmzHCL4Bbs2CergZLsZaWCu6Dr5mfisXemmqyJxNvcXRtf52QpaMHYzi",
+      "createdAt": "2026-05-21T04:32:16.396Z",
+      "status": "synced"
+    }
+  ],
+  "assistant_messages": [
+    {
+      "id": "f44cd2e4-1a66-4817-975f-be9e724087b6",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "user",
+      "content": "Estou me sentindo extremamente sobrecarregada com a rotina de terapias e consultas essa semana. Sinto que não dou conta de tudo sozinha.",
+      "createdAt": "2026-05-20T19:47:17.422Z"
+    },
+    {
+      "id": "d53f986c-20e2-43c3-a21c-4dcb5f1774c7",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-20T19:47:17.423Z"
+    },
+    {
+      "id": "9a570434-7f36-4381-92b4-543629e225cf",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "user",
+      "content": "ola",
+      "createdAt": "2026-05-20T19:47:21.899Z"
+    },
+    {
+      "id": "927ccc4f-3a16-40ea-a57d-ac4f9ba9015f",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-20T19:47:21.900Z"
+    },
+    {
+      "id": "1976c681-85b7-4627-809e-68d6f3cd4b08",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "user",
+      "content": "oi",
+      "createdAt": "2026-05-20T19:47:30.622Z"
+    },
+    {
+      "id": "056e1229-6442-4446-9959-a3b5ddb20605",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-20T19:47:30.623Z"
+    },
+    {
+      "id": "eaf36fd9-0752-4c34-988b-2abfdad02893",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "user",
+      "content": "ola",
+      "createdAt": "2026-05-20T22:55:05.778Z"
+    },
+    {
+      "id": "fe4bb226-9bad-42ad-81b9-e23fb2b33f93",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-20T22:55:05.779Z"
+    },
+    {
+      "id": "0c216f0e-e457-4d40-b2eb-1b20e1b4753c",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "user",
+      "content": "oi",
+      "createdAt": "2026-05-21T03:26:14.812Z"
+    },
+    {
+      "id": "3262e721-20e7-465f-8c08-f8465852bac6",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-21T03:26:14.814Z"
+    },
+    {
+      "id": "ccf498b8-b715-4278-b22c-789ae1e4116a",
+      "userId": "piana_uid_lmk3o46fl7s1779335327251",
+      "role": "user",
+      "content": "okla",
+      "createdAt": "2026-05-21T03:50:10.817Z"
+    },
+    {
+      "id": "a3dcb97e-d1d1-4a3b-bd6d-8fad45ba5672",
+      "userId": "piana_uid_lmk3o46fl7s1779335327251",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-21T03:50:10.818Z"
+    },
+    {
+      "id": "ea5fc205-9c32-4070-b550-868f743da358",
+      "userId": "piana_uid_lmk3o46fl7s1779335327251",
+      "role": "user",
+      "content": "oi",
+      "createdAt": "2026-05-21T03:50:16.018Z"
+    },
+    {
+      "id": "5f5b6754-984a-4750-bb2a-316135f07d06",
+      "userId": "piana_uid_lmk3o46fl7s1779335327251",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-21T03:50:16.020Z"
+    }
+  ]
+}

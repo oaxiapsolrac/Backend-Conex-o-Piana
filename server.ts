@@ -105,23 +105,52 @@ function containsProfanity(text: string): boolean {
   return false;
 }
 
-// Emulate a local Solana connection helper
-// If keys are provided, it can be expanded. If empty or missing, it triggers the fallback error system as per specifications.
-async function sendToSolanaMemoProgram(payload: object): Promise<string> {
-  const privateKey = process.env.SOLANA_PRIVATE_KEY;
-  const rpcUrl = process.env.SOLANA_RPC_URL;
+import { Connection, Keypair, Transaction, TransactionInstruction, PublicKey } from '@solana/web3.js';
+import bs58 from 'bs58';
 
-  if (!privateKey || !rpcUrl) {
-    // Force fallback to fulfill the exact Technical Doc requirement
-    throw new Error('Solana environment configuration missing. Triggering required fallback system.');
+async function sendToSolanaMemoProgram(payload: object): Promise<string> {
+  const privateKeyStr = process.env.SOLANA_PRIVATE_KEY;
+  const rpcUrl = process.env.SOLANA_RPC_URL || 'https://api.devnet.solana.com'; // DEFINA AQUI!
+
+  if (!privateKeyStr) {
+    throw new Error('Chave não configurada.');
   }
 
-  // If real key existed, we could implement actual @solana/web3.js connection.
-  // Since it is a sandbox demo environment, we throw here to activate the graceful fallback flow,
-  // returning a realistic signature if simulated success is desired.
-  return '5WjYvUe9zN7qXyZbKm8W3Lp1XvBcN9mJqZyWrX9vYm8XbCrM6qZyWbNm9pXvB7mK8W3Lp1X';
-}
+  try {
+    let secretKey: Uint8Array;
+    
+    // Tenta detetar se é um array (formato [123, 45...]) ou string Base58
+    if (privateKeyStr.trim().startsWith('[')) {
+      secretKey = Uint8Array.from(JSON.parse(privateKeyStr));
+    } else {
+      secretKey = bs58.decode(privateKeyStr.trim());
+    }
 
+    const connection = new Connection(rpcUrl, 'confirmed');
+    const feePayer = Keypair.fromSecretKey(secretKey);
+
+    // O resto da função continua igual...
+    const memoProgramId = new PublicKey(process.env.SOLANA_MEMO_PROGRAM_ID || "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr");
+    const memoInstruction = new TransactionInstruction({
+      keys: [{ pubkey: feePayer.publicKey, isSigner: true, isWritable: true }],
+      programId: memoProgramId,
+      data: Buffer.from(JSON.stringify(payload), "utf-8"),
+    });
+
+    const transaction = new Transaction().add(memoInstruction);
+    const { blockhash } = await connection.getLatestBlockhash('confirmed');
+    transaction.recentBlockhash = blockhash;
+    transaction.feePayer = feePayer.publicKey;
+
+    const signature = await connection.sendTransaction(transaction, [feePayer]);
+    await connection.confirmTransaction(signature, 'confirmed');
+    return signature;
+
+  } catch (error: any) {
+    console.error("Erro na integração com a Solana:", error);
+    throw new Error('Falha ao comunicar com a Solana Devnet.');
+  }
+}
 // --- API ENDPOINTS ---
 
 // 1. Session and Anonymous Auth Setup (DID Generation)

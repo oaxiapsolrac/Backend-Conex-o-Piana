@@ -49,7 +49,13 @@ export default function App() {
   const [simulateSolanaError, setSimulateSolanaError] = useState(false);
 
   // Navigation states
-  const [activeTab, setActiveTab] = useState<'feed' | 'assistant' | 'central'>('feed');
+  const [activeTab, setActiveTab] = useState<'feed' | 'assistant' | 'central'>(() => {
+    const saved = localStorage.getItem('piana_active_tab');
+    if (saved === 'feed' || saved === 'assistant' || saved === 'central') {
+      return saved;
+    }
+    return 'feed';
+  });
   const [isExplorerOpen, setIsExplorerOpen] = useState(false);
 
   // Success message toasts triggered during transitions
@@ -86,6 +92,10 @@ export default function App() {
   useEffect(() => {
     loadSession();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('piana_active_tab', activeTab);
+  }, [activeTab]);
 
   // Display elegant alert popups
   const triggerToast = (msg: string, type: 'success' | 'warning' = 'success') => {
