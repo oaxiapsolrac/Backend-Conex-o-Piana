@@ -16,6 +16,7 @@ interface Schema {
   interactions: Interaction[];
   proof_of_care: ProofOfCare[];
   assistant_messages: AssistantMessage[];
+  badges?: ProofOfCare[];
 }
 
 const defaultSchema: Schema = {
@@ -38,14 +39,27 @@ export class BackendDB {
     try {
       if (fs.existsSync(DB_FILE)) {
         const raw = fs.readFileSync(DB_FILE, 'utf-8');
-        this.schema = JSON.parse(raw);
-        // Ensure all keys exist
-        this.schema.users = this.schema.users || [];
-        this.schema.consents = this.schema.consents || [];
-        this.schema.posts = this.schema.posts || [];
-        this.schema.interactions = this.schema.interactions || [];
-        this.schema.proof_of_care = this.schema.proof_of_care || [];
-        this.schema.assistant_messages = this.schema.assistant_messages || [];
+        const loadedSchema = JSON.parse(raw) as Partial<Schema> & { badges?: ProofOfCare[] };
+
+        // Migrate legacy badges into proof_of_care when present
+        const migratedProofs = [
+          ...(loadedSchema.proof_of_care || []),
+          ...(loadedSchema.badges || [])
+        ];
+
+        this.schema = {
+          users: loadedSchema.users || [],
+          consents: loadedSchema.consents || [],
+          posts: loadedSchema.posts || [],
+          interactions: loadedSchema.interactions || [],
+          proof_of_care: migratedProofs,
+          assistant_messages: loadedSchema.assistant_messages || [],
+        };
+
+        if (loadedSchema.badges && loadedSchema.badges.length > 0) {
+          console.warn('Migrated legacy badges to proof_of_care.');
+          this.save();
+        }
       } else {
         this.save();
       }

@@ -139,6 +139,16 @@
       "uid": "piana_uid_kuqssr6rnn81779342585166",
       "did": "PIANA-817B19AC",
       "createdAt": "2026-05-21T05:49:45.183Z"
+    },
+    {
+      "uid": "piana_uid_idmfc0dijwf1779364685482",
+      "did": "PIANA-7F2B0296",
+      "createdAt": "2026-05-21T11:58:05.491Z"
+    },
+    {
+      "uid": "piana_uid_gv9vmeoeoks1779364685484",
+      "did": "PIANA-F817B662",
+      "createdAt": "2026-05-21T11:58:05.494Z"
     }
   ],
   "consents": [
@@ -337,6 +347,20 @@
       "transactionId": "PydUZU1nMyMbHzDW4YTxcKZoKpY34bX1Y6UZCU6L3ZUi4B1PbH56PxMNA6pNumHB6Q7A83cSWHXRYDEqmeyRcy7",
       "createdAt": "2026-05-21T05:49:53.655Z",
       "status": "synced"
+    },
+    {
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "hash": "26f91a677179b186ad79540093ab8eb557aae9207ec7d61a0df8dac6ed9b00c3",
+      "transactionId": "5jjSuxQbme58imdUqFbParcH9gAJuRBxTbFYt8DMMqVxVhB9EuqPmkMnhAV8UAPsqYQEU4RdN88QZTM75wzFojXb",
+      "createdAt": "2026-05-21T11:58:13.584Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "hash": "50ea3e1b6c8875e9bce2e03b0570ff648699890f836541bd08abe2fa84c88206",
+      "transactionId": "5YeGnKNzrVWgwXhqJPTSfAQMketHbhGMeiu11SA65mkhcM3vNKrZk65ATDsGLgjWBS28DCbhq9mULkV4aSwjznMe",
+      "createdAt": "2026-05-21T11:58:13.651Z",
+      "status": "synced"
     }
   ],
   "posts": [
@@ -395,6 +419,48 @@
       "authorDid": "PIANA-6B2BC4D8",
       "content": "[DESABAFO] oi",
       "createdAt": "2026-05-21T05:42:38.840Z"
+    },
+    {
+      "id": "a4efe557-e5bc-4583-a913-c7bb4569bc74",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "authorDid": "PIANA-6B2BC4D8",
+      "content": "[DESABAFO] oi\\",
+      "createdAt": "2026-05-21T05:59:40.893Z"
+    },
+    {
+      "id": "68a081fd-88e6-45aa-9a98-c22bf3680c09",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "authorDid": "PIANA-6B2BC4D8",
+      "content": "[DESABAFO] consegui aposentar pelo LOA",
+      "createdAt": "2026-05-21T06:00:38.428Z"
+    },
+    {
+      "id": "91ce6bbc-5725-4189-a06f-14995ba897d4",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "authorDid": "PIANA-6B2BC4D8",
+      "content": "[VITORIA] consegui aposentar",
+      "createdAt": "2026-05-21T06:00:53.793Z"
+    },
+    {
+      "id": "5e4ae51f-b6ae-42ab-8277-fb6ae8dfb037",
+      "userId": "piana_uid_kuqssr6rnn81779342585166",
+      "authorDid": "PIANA-817B19AC",
+      "content": "[DESABAFO] Este é meu primeiro post de teste para narradora.",
+      "createdAt": "2026-05-21T06:06:49.172Z"
+    },
+    {
+      "id": "e9449f26-8a23-4237-9c87-9071a726158f",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "authorDid": "PIANA-4E086EAF",
+      "content": "[DESABAFO] oi\n",
+      "createdAt": "2026-05-21T11:57:29.747Z"
+    },
+    {
+      "id": "0c354c7b-b657-43e7-9b16-c0df7b109ea2",
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "authorDid": "PIANA-F817B662",
+      "content": "[DESABAFO] oii",
+      "createdAt": "2026-05-21T11:58:21.352Z"
     }
   ],
   "interactions": [
@@ -630,6 +696,87 @@
       "createdAt": "2026-05-21T05:43:13.525Z",
       "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
       "proof_of_care": null
+    },
+    {
+      "id": "be51561e-0304-4c90-bd20-3cfbed9f4c6f",
+      "postId": "337b9ca9-0d2b-4691-b75c-cb9d83401343",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_x606fz7cxx1779342005415",
+      "message": "Não carregue toda a culpa do mundo nas costas. Descanse seu espírito, seu esforço é lindo.",
+      "createdAt": "2026-05-21T05:59:33.233Z",
+      "ai_context": "Ao aliviar a culpa, essa partilha afetuosa cria um laço de empatia que fortalece a rede de apoio e traz esperança de que nenhuma mãe caminha só.",
+      "proof_of_care": null
+    },
+    {
+      "id": "8bfcf0a1-b80f-4233-b6dd-31d070b16633",
+      "postId": "91ce6bbc-5725-4189-a06f-14995ba897d4",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_x606fz7cxx1779342005415",
+      "message": "Não carregue toda a culpa do mundo nas costas. Descanse seu espírito, seu esforço é lindo.",
+      "createdAt": "2026-05-21T06:01:13.770Z",
+      "ai_context": "Esse acolhimento mútuo alivia a culpa e valida a jornada, fortalecendo a rede de apoio com empatia e trazendo esperança de que ninguém luta só.",
+      "proof_of_care": null
+    },
+    {
+      "id": "01e46602-abd8-44c8-b6fd-ccf0c52b0cdd",
+      "postId": "91ce6bbc-5725-4189-a06f-14995ba897d4",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_x606fz7cxx1779342005415",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T06:04:03.896Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
+    },
+    {
+      "id": "49e05576-a692-4a41-b8d9-3e5ccad1ecfe",
+      "postId": "0c354c7b-b657-43e7-9b16-c0df7b109ea2",
+      "senderId": "piana_uid_gv9vmeoeoks1779364685484",
+      "senderDid": "PIANA-F817B662",
+      "receiverId": "piana_uid_gv9vmeoeoks1779364685484",
+      "message": "Estou torcendo muito por vocês hoje. Nenhuma batalha de mãe é em vão!",
+      "createdAt": "2026-05-21T11:59:24.671Z",
+      "ai_context": "Esse abraço em palavras valida a jornada materna, transformando o isolamento em força coletiva que nutre a esperança e fortalece a rede de apoio.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "5pFkwfMEpVzswJsip1rtWzQGW97v1u9wN9jehg4eB7xK8zkr7Dq2aGtLFacVMobhmY3UETK4TrBBLMMarCs6QfL1"
+      }
+    },
+    {
+      "id": "4ac956eb-79ec-4439-9114-f575c2d36966",
+      "postId": "e9449f26-8a23-4237-9c87-9071a726158f",
+      "senderId": "piana_uid_gv9vmeoeoks1779364685484",
+      "senderDid": "PIANA-F817B662",
+      "receiverId": "piana_uid_8vt2xcocdgl1779306373772",
+      "message": "Não carregue toda a culpa do mundo nas costas. Descanse seu espírito, seu esforço é lindo.",
+      "createdAt": "2026-05-21T11:59:39.043Z",
+      "ai_context": "Ao validar a dor e aliviar a culpa, esse afeto mútuo mostra que nenhuma mãe está só, fortalecendo a rede de apoio e renovando a esperança coletiva.",
+      "proof_of_care": null
+    },
+    {
+      "id": "b09cdc39-cca1-47fd-8455-c96a805555a7",
+      "postId": "5e4ae51f-b6ae-42ab-8277-fb6ae8dfb037",
+      "senderId": "piana_uid_gv9vmeoeoks1779364685484",
+      "senderDid": "PIANA-F817B662",
+      "receiverId": "piana_uid_kuqssr6rnn81779342585166",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T11:59:57.859Z",
+      "ai_context": "Essa partilha afetuosa valida a maternidade atípica, unindo dores e conquistas para fortalecer a rede de apoio com empatia e esperança diária.",
+      "proof_of_care": null
+    },
+    {
+      "id": "e6a86e9d-8cdb-4260-891a-79f81e261389",
+      "postId": "91ce6bbc-5725-4189-a06f-14995ba897d4",
+      "senderId": "piana_uid_gv9vmeoeoks1779364685484",
+      "senderDid": "PIANA-F817B662",
+      "receiverId": "piana_uid_x606fz7cxx1779342005415",
+      "message": "Não carregue toda a culpa do mundo nas costas. Descanse seu espírito, seu esforço é lindo.",
+      "createdAt": "2026-05-21T12:00:23.078Z",
+      "ai_context": "O acolhimento mútuo alivia a culpa e valida a jornada, fortalecendo a rede de apoio pelo afeto e renovando a esperança de que ninguém luta só.",
+      "proof_of_care": null
     }
   ],
   "proof_of_care": [
@@ -679,6 +826,78 @@
       "badge": "acolhedora",
       "solanaTx": "2ZBmKPDi5VDcj3AtRWfjwiVDdMiya2NRCdRQukJ8BzMaq9NK3vJKBnc35y5ChToZh5ig3E29uQBs1gu1TSw61oQD",
       "createdAt": "2026-05-21T05:40:37.695Z",
+      "status": "synced"
+    },
+    {
+      "id": "5c52dc71-c3dd-4eaa-91bc-3690f10e691d",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "badge": "empatica",
+      "solanaTx": "3CnXgqagyTCK3W6U5GsC48jgPMzBZ6Hre3gmb2kmLLMhAtYwjrq5RDQNsRrWJ8eyBJxLu83KGSb12XAYZG2nHLfE",
+      "createdAt": "2026-05-21T05:59:31.439Z",
+      "status": "synced"
+    },
+    {
+      "id": "b37c9bb3-a150-4b2d-a749-acd4080833ea",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "badge": "guardia",
+      "solanaTx": "3zSkLbzt6PsHNypT9h312mSGYEYxrWoJVABnevTMzKR3sT8QW7eGJVFbADjJgqGmbzK6CGPfnhjqkfVXaXSGoXPK",
+      "createdAt": "2026-05-21T05:59:55.079Z",
+      "status": "synced"
+    },
+    {
+      "id": "273f8cf9-d16f-4e08-ac0c-6769606b77be",
+      "userId": "piana_uid_kuqssr6rnn81779342585166",
+      "badge": "narradora",
+      "solanaTx": "4HQQgrnNGYTfvrbYLJEBPHRRffjrSnWopYyJb3hBd78Rt6dqPFooBZTSUMy5pCNzkW48VQCV5eHQrAn8uf2VJKXh",
+      "createdAt": "2026-05-21T06:06:49.172Z",
+      "status": "synced"
+    },
+    {
+      "id": "108b9224-86d8-4de0-ac04-afd10b8cc2ee",
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "badge": "narradora",
+      "solanaTx": "3tPhQzR7sXiwZNRQYsVTYmojPievjtGXNGUq9yX9R9oAW38ibivdSgqxR6hcm3BQMh98Q1osuYX1XYkx7uwLNqJw",
+      "createdAt": "2026-05-21T05:19:21.972Z",
+      "status": "synced"
+    },
+    {
+      "id": "b207b99f-fd51-4471-8a30-cefed46a8c9f",
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "badge": "narradora",
+      "solanaTx": "26Ukmd45PjoYy8CQeUxmhWbQX9UW6jaCtdNcy1B2UEMU9w7zgpjNvM1zpNAjZ3pEN3XnDwC1NcGGQwDd9vZYzWbn",
+      "createdAt": "2026-05-21T11:58:21.354Z",
+      "status": "synced"
+    },
+    {
+      "id": "75f77717-7e5f-4b3e-9643-02a7749a801e",
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "badge": "pioneira",
+      "solanaTx": "5FoGuEMFR2krytZyPat6NmGwFdmuCoXMYyKLfp26kfTCDWKkzAuNxy4B2J1W9wRNRATkK15ewxa14dAz8ojaKxrE",
+      "createdAt": "2026-05-21T11:58:35.686Z",
+      "status": "synced"
+    },
+    {
+      "id": "29c55abf-9bcb-4702-8035-34782854e5aa",
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "badge": "acolhedora",
+      "solanaTx": "5pFkwfMEpVzswJsip1rtWzQGW97v1u9wN9jehg4eB7xK8zkr7Dq2aGtLFacVMobhmY3UETK4TrBBLMMarCs6QfL1",
+      "createdAt": "2026-05-21T11:59:22.912Z",
+      "status": "synced"
+    },
+    {
+      "id": "10cb47ed-7c48-47bd-8e21-f7fc59438cd1",
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "badge": "empatica",
+      "solanaTx": "2B5WbVPXyS4muzNvXfF7Kmy3a6fkNTtc5JKQc4VjHK7oBw5pV5xJDXPiTAzVNvTeR1o18hwZTrpQMhBbekhyQm3H",
+      "createdAt": "2026-05-21T12:00:21.470Z",
+      "status": "synced"
+    },
+    {
+      "id": "3828e1e7-b01f-4bf8-8345-e2f90e78e2fc",
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "badge": "guardia",
+      "solanaTx": "Xxuj7KSN5GUhnJfymp59mPyj3YZgpUHyvkRdwxDkxnDQrWTrSkk8CyMYeitZTnoVFCWgVvM9CCqn4tnk7BQrgQ4",
+      "createdAt": "2026-05-21T12:00:40.253Z",
       "status": "synced"
     }
   ],
@@ -850,16 +1069,62 @@
       "role": "assistant",
       "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
       "createdAt": "2026-05-21T05:42:45.585Z"
-    }
-  ],
-  "badges": [
+    },
     {
-      "id": "108b9224-86d8-4de0-ac04-afd10b8cc2ee",
-      "userId": "piana_uid_tr70ah134n1779339886268",
-      "badge": "narradora",
-      "solanaTx": "3tPhQzR7sXiwZNRQYsVTYmojPievjtGXNGUq9yX9R9oAW38ibivdSgqxR6hcm3BQMh98Q1osuYX1XYkx7uwLNqJw",
-      "createdAt": "2026-05-21T05:19:21.972Z",
-      "status": "synced"
+      "id": "78bff890-9c5c-4093-82bf-943e8eae4ab9",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "role": "user",
+      "content": "oi",
+      "createdAt": "2026-05-21T06:00:10.918Z"
+    },
+    {
+      "id": "5dc1dcff-aba7-4344-8af3-a083d8697c94",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-21T06:00:11.407Z"
+    },
+    {
+      "id": "89723bf0-4ab4-4e71-8c99-d1127a41738f",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "role": "user",
+      "content": "quem é voce",
+      "createdAt": "2026-05-21T06:01:34.945Z"
+    },
+    {
+      "id": "d1f77f8e-3832-4767-b7dc-78d1b46c6e9f",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-21T06:01:35.268Z"
+    },
+    {
+      "id": "65e92057-65f8-40a2-b51d-4a73a2487678",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "user",
+      "content": "oi",
+      "createdAt": "2026-05-21T11:57:40.293Z"
+    },
+    {
+      "id": "cb1cedbc-e7e4-4e95-a5a7-dac43e901c62",
+      "userId": "piana_uid_8vt2xcocdgl1779306373772",
+      "role": "assistant",
+      "content": "Olá, mamãe! Seja muito bem-vinda ao Conexão Piana. Como está o seu coração hoje? \n\nEstou aqui para te ouvir, te acolher e te dar um abraço quentinho em forma de palavras. Pode falar, este espaço é todinho seu.",
+      "createdAt": "2026-05-21T11:57:44.312Z"
+    },
+    {
+      "id": "2fce70d8-2a85-410d-924f-321093251285",
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "role": "user",
+      "content": "Estou me sentindo extremamente sobrecarregada com a rotina de terapias e consultas essa semana. Sinto que não dou conta de tudo sozinha.",
+      "createdAt": "2026-05-21T11:58:28.656Z"
+    },
+    {
+      "id": "3d301079-b909-485c-b3ab-bda85568129b",
+      "userId": "piana_uid_gv9vmeoeoks1779364685484",
+      "role": "assistant",
+      "content": "Respira fundo, querida. Sinto muito que você esteja se sentindo assim, mas quero que saiba que o seu cansaço é real e totalmente compreensível. A rotina de terapias e consultas é exaustiva, e carregar tudo nas costas é um peso grande demais para uma pessoa só.\n\nVocê não precisa dar conta de tudo sozinha, e está tudo bem não ser forte o tempo todo. Você é uma mãe maravilhosa, mas também é humana e tem os seus limites. \n\nLembre-se de que você também merece cuidado. Se for possível, tente dividir um pouquinho desse peso com alguém de confiança ou busque o apoio de um profissional de psicologia para te dar esse colo e fortalecer suas emoções. \n\nNós, da Conexão Piana, estamos aqui de braços abertos para caminhar ao seu lado. Você não está sozinha nessa jornada. Se quiser desabafar mais, estou aqui para te ouvir. 💕",
+      "createdAt": "2026-05-21T11:58:35.684Z"
     }
   ]
 }
