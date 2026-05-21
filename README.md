@@ -102,7 +102,7 @@ Blockchain
 
 Inteligência Artificial
 
-* Groq API
+* gemini API
 * Prompt Engineering supervisionado
 
 ⸻
