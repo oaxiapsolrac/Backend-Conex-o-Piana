@@ -368,7 +368,14 @@ app.post('/api/consents', async (req, res) => {
 app.get('/api/posts', (req, res) => {
   try {
     const posts = dbStore.getPosts();
-    res.json(posts);
+    const enriched = posts.map(post => {
+      const userObj = dbStore.getUser(post.userId);
+      return {
+        ...post,
+        authorPseudonym: userObj?.pseudonym || undefined
+      };
+    });
+    res.json(enriched);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
@@ -436,7 +443,13 @@ app.post('/api/posts', async (req, res) => {
       });
     }
 
-    res.json({ post, narratoraBadge });
+    res.json({ 
+      post: {
+        ...post,
+        authorPseudonym: user.pseudonym || undefined
+      }, 
+      narratoraBadge 
+    });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
@@ -781,7 +794,14 @@ app.get('/api/posts/:postId/interactions', (req, res) => {
   try {
     const { postId } = req.params;
     const interactions = dbStore.getInteractionsForPost(postId);
-    res.json(interactions);
+    const enriched = interactions.map(interaction => {
+      const userObj = dbStore.getUser(interaction.senderId);
+      return {
+        ...interaction,
+        senderPseudonym: userObj?.pseudonym || undefined
+      };
+    });
+    res.json(enriched);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }

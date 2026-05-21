@@ -29,6 +29,7 @@ export interface Post {
   authorDid: string;
   content: string;
   createdAt: string;
+  authorPseudonym?: string;
 }
 
 export interface Interaction {
@@ -40,6 +41,7 @@ export interface Interaction {
   message: string;
   createdAt: string;
   ai_context?: string;
+  senderPseudonym?: string;
   proof_of_care?: {
     issued: boolean;
     badge: 'acolhedora' | 'narradora' | 'pioneira' | 'empatica' | 'guardia';

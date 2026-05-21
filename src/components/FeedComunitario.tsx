@@ -819,7 +819,7 @@ export default function FeedComunitario({
                           </div>
                           <div>
                             <span className="text-xs font-bold text-stone-800 tracking-tight flex items-center gap-1.5 leading-none group-hover/author:text-piana-primary duration-150 transition-colors">
-                              Mãe {post.authorDid.substring(0, 12)}...
+                              {post.authorPseudonym || `Mãe ${post.authorDid.substring(0, 12)}...`}
                               {isOwnPost && (
                                 <span className="text-[9px] bg-piana-primary/10 text-piana-primary px-1.5 py-0.5 rounded font-black tracking-wide">
                                   Você
@@ -964,7 +964,7 @@ export default function FeedComunitario({
                                             onClick={() => handleViewMotherProfile(comment.senderDid)}
                                             title="Ver perfil desta mãe"
                                           >
-                                            Mãe {comment.senderDid.substring(0, 12)}...
+                                            {comment.senderPseudonym || `Mãe ${comment.senderDid.substring(0, 12)}...`}
                                           </span>
                                           <span className="text-[9px] text-stone-400 font-mono">{new Date(comment.createdAt).toLocaleDateString()}</span>
                                         </div>
