@@ -16,7 +16,6 @@ interface Schema {
   interactions: Interaction[];
   proof_of_care: ProofOfCare[];
   assistant_messages: AssistantMessage[];
-  badges?: ProofOfCare[];
 }
 
 const defaultSchema: Schema = {
@@ -39,27 +38,14 @@ export class BackendDB {
     try {
       if (fs.existsSync(DB_FILE)) {
         const raw = fs.readFileSync(DB_FILE, 'utf-8');
-        const loadedSchema = JSON.parse(raw) as Partial<Schema> & { badges?: ProofOfCare[] };
-
-        // Migrate legacy badges into proof_of_care when present
-        const migratedProofs = [
-          ...(loadedSchema.proof_of_care || []),
-          ...(loadedSchema.badges || [])
-        ];
-
-        this.schema = {
-          users: loadedSchema.users || [],
-          consents: loadedSchema.consents || [],
-          posts: loadedSchema.posts || [],
-          interactions: loadedSchema.interactions || [],
-          proof_of_care: migratedProofs,
-          assistant_messages: loadedSchema.assistant_messages || [],
-        };
-
-        if (loadedSchema.badges && loadedSchema.badges.length > 0) {
-          console.warn('Migrated legacy badges to proof_of_care.');
-          this.save();
-        }
+        this.schema = JSON.parse(raw);
+        // Ensure all keys exist
+        this.schema.users = this.schema.users || [];
+        this.schema.consents = this.schema.consents || [];
+        this.schema.posts = this.schema.posts || [];
+        this.schema.interactions = this.schema.interactions || [];
+        this.schema.proof_of_care = this.schema.proof_of_care || [];
+        this.schema.assistant_messages = this.schema.assistant_messages || [];
       } else {
         this.save();
       }
@@ -94,6 +80,42 @@ export class BackendDB {
     this.schema.users.push(newUser);
     this.save();
     return newUser;
+  }
+
+  updateUserProfile(uid: string, fields: Partial<Omit<User, 'uid' | 'did' | 'createdAt'>>): User | undefined {
+    const user = this.getUser(uid);
+    if (!user) return undefined;
+    
+    if (fields.pseudonym !== undefined) user.pseudonym = fields.pseudonym;
+    if (fields.childDiagnosis !== undefined) user.childDiagnosis = fields.childDiagnosis;
+    if (fields.childAge !== undefined) user.childAge = fields.childAge;
+    if (fields.bio !== undefined) user.bio = fields.bio;
+    if (fields.location !== undefined) user.location = fields.location;
+    
+    this.save();
+    return user;
+  }
+
+  deleteUserData(uid: string) {
+    // 1. Delete user record
+    this.schema.users = this.schema.users.filter((u) => u.uid !== uid);
+    
+    // 2. Delete user consents
+    this.schema.consents = this.schema.consents.filter((c) => c.userId !== uid);
+    
+    // 3. Delete user posts
+    this.schema.posts = this.schema.posts.filter((p) => p.userId !== uid);
+    
+    // 4. Delete user interactions where they are the sender
+    this.schema.interactions = this.schema.interactions.filter((i) => i.senderId !== uid);
+    
+    // 5. Delete proofs of care of user
+    this.schema.proof_of_care = this.schema.proof_of_care.filter((p) => p.userId !== uid);
+    
+    // 6. Delete assistant messages
+    this.schema.assistant_messages = this.schema.assistant_messages.filter((m) => m.userId !== uid);
+    
+    this.save();
   }
 
   // Consents

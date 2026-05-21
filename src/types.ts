@@ -7,6 +7,11 @@ export interface User {
   uid: string;
   did: string; // Formatting: PIANA-XXXXXXXX
   createdAt: string;
+  pseudonym?: string;
+  childDiagnosis?: string;
+  childAge?: string;
+  bio?: string;
+  location?: string;
 }
 
 export interface Consent {

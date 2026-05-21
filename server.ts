@@ -180,6 +180,93 @@ app.post('/api/auth/session', (req, res) => {
   }
 });
 
+// Update User Profile
+app.post('/api/auth/profile', (req, res) => {
+  try {
+    const { userId, pseudonym, childDiagnosis, childAge, bio, location } = req.body;
+    if (!userId) {
+      return res.status(400).json({ error: 'userId is required' });
+    }
+    const updatedUser = dbStore.updateUserProfile(userId, {
+      pseudonym,
+      childDiagnosis,
+      childAge,
+      bio,
+      location,
+    });
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(updatedUser);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Retrieve User Profile and Badges by DID
+app.get('/api/users/by-did/:did', (req, res) => {
+  try {
+    const { did } = req.params;
+    if (!did) {
+      return res.status(400).json({ error: 'O parâmetro DID é obrigatório' });
+    }
+    const users = dbStore.getUsers();
+    const foundUser = users.find(u => u.did === did);
+    if (!foundUser) {
+      return res.status(404).json({ error: 'Esta mãe não foi encontrada ou seus dados foram excluídos conforme o Direito ao Esquecimento da LGPD.' });
+    }
+    const badges = dbStore.getProofOfCareForUser(foundUser.uid);
+    res.json({
+      uid: foundUser.uid,
+      did: foundUser.did,
+      createdAt: foundUser.createdAt,
+      pseudonym: foundUser.pseudonym,
+      childDiagnosis: foundUser.childDiagnosis,
+      childAge: foundUser.childAge,
+      bio: foundUser.bio,
+      location: foundUser.location,
+      badges: badges
+    });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Erase User Data (LGPD - right to be forgotten / Direito ao Esquecimento)
+// Support both DELETE and POST with route parameters or JSON body for maximum sandboxing/iframe environment safety
+const handleForget = (userIdArg: string | undefined, res: express.Response) => {
+  if (!userIdArg) {
+    return res.status(400).json({ error: 'userId is required' });
+  }
+  dbStore.deleteUserData(userIdArg);
+  return res.json({ success: true, message: 'Todos os seus dados foram apagados permanentemente de nossos servidores simulados!' });
+};
+
+app.delete('/api/auth/forget/:userId', (req, res) => {
+  try {
+    handleForget(req.params.userId, res);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/auth/forget/:userId', (req, res) => {
+  try {
+    handleForget(req.params.userId, res);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/auth/forget', (req, res) => {
+  try {
+    const userId = req.body.userId || req.body.uid;
+    handleForget(userId, res);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Admin endpoint to reset database for clean demo run
 app.post('/api/demo/reset', (req, res) => {
   dbStore.clear();

@@ -12,6 +12,7 @@ import FeedComunitario from './components/FeedComunitario';
 import AssistenteChat from './components/AssistenteChat';
 import SolanaExplorer from './components/SolanaExplorer';
 import CentralTransparencia from './components/CentralTransparencia';
+import MaternalProfileModal from './components/MaternalProfileModal';
 import AppLogo from './components/AppLogo';
 import { User, Consent, ProofOfCare } from './types';
 
@@ -57,6 +58,7 @@ export default function App() {
     return 'feed';
   });
   const [isExplorerOpen, setIsExplorerOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   // Success message toasts triggered during transitions
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'warning' } | null>(null);
@@ -187,6 +189,18 @@ export default function App() {
     }
   };
 
+  const handleAccountDeleted = () => {
+    localStorage.removeItem('piana_user_uid');
+    setUser(null);
+    setConsents([]);
+    setProofs([]);
+    setIsProfileOpen(false);
+    triggerToast(
+      'Sua conta e todos os dados foram apagados permanentemente com segurança sob regulação da LGPD (Direito ao Esquecimento).',
+      'success'
+    );
+  };
+
   if (isInitializing) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center font-sans">
@@ -258,10 +272,16 @@ export default function App() {
           {/* Audit Blockchain explorer shortcut */}
           <div className="flex items-center gap-2">
             {isRegisteredUser && (
-              <div className="hidden md:flex items-center gap-1.5 bg-piana-secondary/20 border border-piana-secondary/35 px-2.5 py-1.5 rounded-full text-piana-text cursor-pointer transition">
+              <button
+                onClick={() => setIsProfileOpen(true)}
+                className="hidden md:flex items-center gap-1.5 bg-piana-secondary/20 hover:bg-piana-secondary/30 active:bg-piana-secondary/35 border border-piana-secondary/35 px-2.5 py-1.5 rounded-full text-piana-text cursor-pointer transition focus:outline-none"
+                title="Ver seu perfil"
+              >
                 <DidAvatarMin did={user.did} />
-                <span className="text-[11px] font-semibold text-stone-700">Mãe {user.did.substring(0, 5)}...</span>
-              </div>
+                <span className="text-[11px] font-semibold text-stone-700">
+                  {user.pseudonym || `Mãe ${user.did.substring(0, 5)}...`}
+                </span>
+              </button>
             )}
 
             <button
@@ -325,10 +345,11 @@ export default function App() {
             proofs={proofs}
             onNewProofEmitted={handleNewProofEmitted}
             syncProofs={syncProofs}
+            onProfileClick={() => setIsProfileOpen(true)}
           />
         ) : activeTab === 'assistant' ? (
           /* Step 4: Crisis-aware Ethical assistant therapist */
-          <AssistenteChat user={user} syncProofs={syncProofs} onNewProofEmitted={handleNewProofEmitted} />
+          <AssistenteChat user={user} syncProofs={syncProofs} />
         ) : (
           /* Step 6: Full transparency ledger & verify dashboard */
           <CentralTransparencia
@@ -337,7 +358,6 @@ export default function App() {
             proofs={proofs}
             simulateSolanaError={simulateSolanaError}
             syncProofs={syncProofs}
-            onNewProofEmitted={handleNewProofEmitted}
           />
         )}
       </main>
@@ -349,6 +369,17 @@ export default function App() {
         consents={consents}
         proofs={proofs}
       />
+
+      {/* Maternal Profile & LGPD Forget Data Modal */}
+      {isRegisteredUser && (
+        <MaternalProfileModal
+          isOpen={isProfileOpen}
+          onClose={() => setIsProfileOpen(false)}
+          user={user}
+          onProfileUpdated={(updatedUser) => setUser(updatedUser)}
+          onAccountDeleted={handleAccountDeleted}
+        />
+      )}
 
       {/* Humble Humanity Footer */}
       <footer className="bg-white border-t border-slate-150 py-5 text-center text-[10px] text-slate-400 font-sans tracking-wide">

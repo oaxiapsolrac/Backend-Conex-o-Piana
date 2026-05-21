@@ -22,6 +22,7 @@ interface FeedComunitarioProps {
   proofs: any[];
   onNewProofEmitted: (proof: any) => void;
   syncProofs?: () => Promise<void>;
+  onProfileClick?: () => void;
 }
 
 // All collectible badges list metadata definitions
@@ -43,7 +44,7 @@ const ALL_BADGES = [
     icon: FileText,
     color: 'from-pink-400 via-pink-300 to-pink-500',
     colorText: 'text-pink-900',
-    colorBorder: 'bordcer-pink-200',
+    colorBorder: 'border-pink-200',
     bgSoft: 'bg-pink-500/5',
   },
   {
@@ -142,6 +143,12 @@ function DigitalCareCoin() {
 
 // Parse posts and extract tagged prefixes cleanly
 const parsePostContent = (content: string) => {
+  if (!content || typeof content !== 'string') {
+    return {
+      category: null,
+      text: '',
+    };
+  }
   const match = content.match(/^\[(DESABAFO|DUVIDA|VITORIA|CONEXAO)\]\s*(.*)/s);
   if (match) {
     return {
@@ -236,6 +243,7 @@ export default function FeedComunitario({
   proofs,
   onNewProofEmitted,
   syncProofs,
+  onProfileClick,
 }: FeedComunitarioProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoadingPosts, setIsLoadingPosts] = useState(true);
@@ -256,6 +264,31 @@ export default function FeedComunitario({
   const [interactionResult, setInteractionResult] = useState<any | null>(null);
   const [postError, setPostError] = useState<string | null>(null);
   const [supportError, setSupportError] = useState<string | null>(null);
+
+  // Other mothers profile modal triggers
+  const [selectedMotherProfile, setSelectedMotherProfile] = useState<any | null>(null);
+  const [isLoadingMotherProfile, setIsLoadingMotherProfile] = useState(false);
+  const [motherProfileError, setMotherProfileError] = useState<string | null>(null);
+
+  const handleViewMotherProfile = async (did: string) => {
+    setIsLoadingMotherProfile(true);
+    setMotherProfileError(null);
+    setSelectedMotherProfile(null);
+    try {
+      const resp = await fetch(`/api/users/by-did/${did}`);
+      const data = await resp.json();
+      if (resp.ok) {
+        setSelectedMotherProfile(data);
+      } else {
+        setMotherProfileError(data.error || 'Erro ao carregar o perfil desta mãe.');
+      }
+    } catch (e) {
+      console.error('Error fetching mother profile:', e);
+      setMotherProfileError('Não foi possível conectar com o servidor para obter os dados de privacidade desta mãe.');
+    } finally {
+      setIsLoadingMotherProfile(false);
+    }
+  };
 
   // Fetch lists of posts on load
   const fetchPosts = async () => {
@@ -337,7 +370,8 @@ export default function FeedComunitario({
       });
       const data = await resp.json();
       if (!data.error) {
-        setPosts([data, ...posts]);
+        const newPost = data.post ? data.post : data;
+        setPosts([newPost, ...posts]);
         setNewPostContent('');
         if (syncProofs) {
           syncProofs().catch(e => console.error('Error syncing narrative proof:', e));
@@ -435,13 +469,20 @@ export default function FeedComunitario({
         <div className="lg:col-span-3 space-y-4">
           
           {/* Mini Profile Shortcut */}
-          <div className="bg-white rounded-2xl border border-stone-150 p-4 shadow-piana space-y-3">
+          <div 
+            onClick={onProfileClick}
+            className="bg-white rounded-2xl border border-stone-150 p-4 shadow-piana space-y-3 cursor-pointer hover:border-piana-primary/30 hover:bg-stone-50/30 transition duration-150 group"
+            title="Clique para ver ou editar seu perfil"
+          >
             <div className="flex items-center gap-2.5">
               <DidAvatar did={user.did} size={36} />
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Identidade Maternal</p>
-                <p className="text-xs font-bold text-stone-850 break-all select-all tracking-tight cursor-help" title={user.did}>
-                  Mãe {user.did.substring(0, 10)}...
+                <div className="flex items-center justify-between">
+                  <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Identidade Maternal</p>
+                  <span className="text-[10px] text-piana-primary font-bold opacity-0 group-hover:opacity-100 transition-opacity">Editar ✎</span>
+                </div>
+                <p className="text-xs font-bold text-stone-850 break-all select-all tracking-tight" title={user.did}>
+                  {user.pseudonym || `Mãe ${user.did.substring(0, 10)}...`}
                 </p>
               </div>
             </div>
@@ -600,7 +641,14 @@ export default function FeedComunitario({
           <div className="bg-white rounded-2xl border border-stone-150 shadow-piana p-5 space-y-4">
             
             <div className="flex gap-3 items-center">
-              <DidAvatar did={user.did} size={40} />
+              <button
+                type="button"
+                onClick={onProfileClick}
+                className="hover:scale-105 duration-100 cursor-pointer focus:outline-none shrink-0"
+                title="Ver seu perfil"
+              >
+                <DidAvatar did={user.did} size={40} />
+              </button>
               
               <div className="bg-piana-bg hover:bg-piana-secondary/15 rounded-2xl flex-1 px-4 py-3 text-stone-500 text-xs text-left select-none cursor-default duration-150 font-semibold">
                 No que você gostaria de desabafar de forma anônima hoje, Mãe?
@@ -761,10 +809,16 @@ export default function FeedComunitario({
                       
                       {/* Post Header */}
                       <div className="flex items-center justify-between pb-1">
-                        <div className="flex items-center gap-2.5">
-                          <DidAvatar did={post.authorDid} size={36} />
+                        <div 
+                          className="flex items-center gap-2.5 cursor-pointer group/author select-none"
+                          onClick={() => handleViewMotherProfile(post.authorDid)}
+                          title="Clique para ver o perfil desta mãe"
+                        >
+                          <div className="group-hover/author:scale-105 transition-transform duration-150">
+                            <DidAvatar did={post.authorDid} size={36} />
+                          </div>
                           <div>
-                            <span className="text-xs font-bold text-stone-800 tracking-tight flex items-center gap-1.5 leading-none cursor-help">
+                            <span className="text-xs font-bold text-stone-800 tracking-tight flex items-center gap-1.5 leading-none group-hover/author:text-piana-primary duration-150 transition-colors">
                               Mãe {post.authorDid.substring(0, 12)}...
                               {isOwnPost && (
                                 <span className="text-[9px] bg-piana-primary/10 text-piana-primary px-1.5 py-0.5 rounded font-black tracking-wide">
@@ -772,8 +826,8 @@ export default function FeedComunitario({
                                 </span>
                               )}
                             </span>
-                            <span className="text-[9px] text-stone-400 font-sans mt-1.5 block font-semibold">
-                              Publicação Segura e Monitorada
+                            <span className="text-[9px] text-stone-400 font-sans mt-1.5 block font-semibold hover:underline">
+                              Clique para ver história e perfil 🔍
                             </span>
                           </div>
                         </div>
@@ -893,13 +947,25 @@ export default function FeedComunitario({
                                     key={comment.id}
                                     className="flex items-start gap-2.5 max-w-full"
                                   >
-                                    <DidAvatar did={comment.senderDid} size={30} />
+                                    <div 
+                                      className="cursor-pointer hover:scale-105 transition-transform shrink-0"
+                                      onClick={() => handleViewMotherProfile(comment.senderDid)}
+                                      title="Ver perfil desta mãe"
+                                    >
+                                      <DidAvatar did={comment.senderDid} size={30} />
+                                    </div>
                                     
                                     <div className="flex-1 min-w-0">
                                       {/* Rounded standard grey speech bubbles */}
-                                      <div className="bg-piana-bg px-3.5 py-2 rounded-2xl text-stone-850 inline-block max-w-full">
+                                      <div className="bg-piana-bg px-3.5 py-2 rounded-2xl text-stone-850 inline-block max-w-full text-left">
                                         <div className="flex items-center gap-1.5 pb-0.5">
-                                          <span className="text-xs font-bold text-stone-900">Mãe {comment.senderDid.substring(0, 12)}...</span>
+                                          <span 
+                                            className="text-xs font-bold text-stone-900 cursor-pointer hover:text-piana-primary transition-colors hover:underline"
+                                            onClick={() => handleViewMotherProfile(comment.senderDid)}
+                                            title="Ver perfil desta mãe"
+                                          >
+                                            Mãe {comment.senderDid.substring(0, 12)}...
+                                          </span>
                                           <span className="text-[9px] text-stone-400 font-mono">{new Date(comment.createdAt).toLocaleDateString()}</span>
                                         </div>
                                         
@@ -1256,6 +1322,189 @@ export default function FeedComunitario({
                 </div>
               </div>
             </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Visualizar Perfil de Outra Mãe Modal */}
+      <AnimatePresence>
+        {selectedMotherProfile && (
+          <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4" id="mother-profile-modal-container">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-stone-900/50 backdrop-blur-xs transition-opacity" 
+              onClick={() => setSelectedMotherProfile(null)}
+            />
+
+            <div className="flex min-h-full items-center justify-center p-4 text-center w-full">
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all w-full max-w-md border border-stone-200 z-10"
+              >
+                {/* Header */}
+                <div className="bg-gradient-to-r from-stone-50 to-stone-100 px-6 py-4 border-b border-stone-150 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center text-rose-500">
+                      <Heart className="w-4 h-4 fill-current" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-extrabold text-stone-900 font-sans tracking-tight">
+                        História & Perfil de Mãe
+                      </h3>
+                      <p className="text-[9px] font-mono text-stone-400 font-medium">DID: {selectedMotherProfile.did}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setSelectedMotherProfile(null)}
+                    className="rounded-full p-1.5 text-stone-400 hover:bg-stone-205 hover:text-stone-700 transition cursor-pointer"
+                  >
+                    <span className="text-lg font-bold">×</span>
+                  </button>
+                </div>
+
+                {/* Profile Details Container */}
+                <div className="p-6 space-y-5">
+                  <div className="flex items-center gap-4 bg-stone-50 p-4 rounded-2xl border border-stone-100">
+                    <DidAvatar did={selectedMotherProfile.did} size={50} />
+                    <div className="min-w-0">
+                      <p className="text-[10px] font-bold text-rose-500 uppercase tracking-wider leading-none mb-1">Apelido Seguro</p>
+                      <h4 className="text-sm font-extrabold text-stone-900 font-sans tracking-tight break-words">
+                        {selectedMotherProfile.pseudonym || `Mãe ${selectedMotherProfile.did.substring(0, 10)}...`}
+                      </h4>
+                      {selectedMotherProfile.location && (
+                        <p className="text-[11px] text-stone-500 font-semibold mt-1">
+                          📍 {selectedMotherProfile.location}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Atypical diagnosis and child's age */}
+                  <div className="grid grid-cols-2 gap-3.5">
+                    <div className="bg-amber-500/[0.03] p-3 rounded-xl border border-amber-500/10 text-left">
+                      <span className="block text-[9px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+                        Diagnóstico do Filho(a)
+                      </span>
+                      <p className="text-xs font-bold text-stone-800 font-sans">
+                        {selectedMotherProfile.childDiagnosis || 'Não informado'}
+                      </p>
+                    </div>
+                    
+                    <div className="bg-piana-primary/[0.03] p-3 rounded-xl border border-piana-primary/10 text-left">
+                      <span className="block text-[9px] font-bold text-stone-400 uppercase tracking-wider mb-1">
+                        Idade da Criança
+                      </span>
+                      <p className="text-xs font-bold text-stone-800 font-sans">
+                        {selectedMotherProfile.childAge || 'Não informado'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bio / History */}
+                  <div className="text-left">
+                    <span className="block text-[9px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">
+                      Sua História / Biografia Maternal
+                    </span>
+                    <div className="bg-stone-50 p-3.5 rounded-xl border border-stone-200/60">
+                      <p className="text-xs font-sans text-stone-700 leading-relaxed font-semibold whitespace-pre-wrap italic">
+                        {selectedMotherProfile.bio ? `"${selectedMotherProfile.bio}"` : 'Esta mãe preferiu manter sua biografia em sigilo, compartilhando os relatos no feed geral.'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Earned Badges */}
+                  <div className="text-left">
+                    <span className="block text-[9px] font-bold text-stone-400 uppercase tracking-wider mb-2">
+                      Medalhas On-Chain ({selectedMotherProfile.badges?.length || 0})
+                    </span>
+                    
+                    {(!selectedMotherProfile.badges || selectedMotherProfile.badges.length === 0) ? (
+                      <p className="text-[11px] text-stone-400 font-semibold italic">Este perfil ainda não possui medalhas emitidas on-chain.</p>
+                    ) : (
+                      <div className="flex flex-wrap gap-2">
+                        {selectedMotherProfile.badges.map((badge: any) => {
+                          const badgeMeta = ALL_BADGES.find(b => b.key === badge.badge);
+                          if (!badgeMeta) return null;
+                          const BadgeIcon = badgeMeta.icon;
+                          
+                          return (
+                            <div 
+                              key={badge.id}
+                              className={`flex items-center gap-2 px-2.5 py-1.5 rounded-full border text-xs font-bold bg-stone-50/50 ${badgeMeta.colorBorder} shadow-3xs hover:bg-white transition`}
+                              title={badgeMeta.desc}
+                            >
+                              <div className={`w-5 h-5 rounded-full flex items-center justify-center bg-gradient-to-tr ${badgeMeta.color} text-white shrink-0`}>
+                                <BadgeIcon className="w-3 h-3" />
+                              </div>
+                              <span className="text-[10px] text-stone-700 font-bold">{badgeMeta.title}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Footer button */}
+                <div className="bg-stone-50 px-6 py-4 border-t border-stone-150 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedMotherProfile(null)}
+                    className="px-4 py-2 text-xs bg-piana-primary hover:bg-piana-primary/95 text-white rounded-xl transition font-sans font-extrabold cursor-pointer"
+                  >
+                    Fechar Perfil
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Loading Modal state (when querying did from API) */}
+      <AnimatePresence>
+        {isLoadingMotherProfile && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="fixed inset-0 bg-stone-900/40 backdrop-blur-xs animate-fadeIn" />
+            <div className="relative bg-white rounded-2xl p-6 shadow-2xl border border-stone-200 max-w-xs w-full text-center space-y-3.5 z-50 animate-scaleUp">
+              <LoaderSpinning label="Acessando identidade da mãe..." />
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Profile Query Error popup */}
+      <AnimatePresence>
+        {motherProfileError && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div className="fixed inset-0 bg-stone-900/40 backdrop-blur-xs animate-fadeIn" onClick={() => setMotherProfileError(null)} />
+            <div className="relative bg-white rounded-2xl p-6 shadow-2xl border border-stone-200 max-w-sm w-full space-y-4 z-50 animate-scaleUp">
+              <div className="flex items-start gap-3 text-left">
+                <span className="text-xl">⚠️</span>
+                <div>
+                  <h4 className="text-xs font-black text-rose-950 font-sans tracking-tight">
+                    Filtro de Privacidade / LGPD
+                  </h4>
+                  <p className="text-[11px] text-stone-500 leading-normal mt-1">
+                    {motherProfileError}
+                  </p>
+                </div>
+              </div>
+              <div className="text-right">
+                <button
+                  type="button"
+                  onClick={() => setMotherProfileError(null)}
+                  className="px-3 py-1.5 text-xs border border-stone-200 bg-white hover:bg-stone-50 text-stone-600 rounded-xl transition font-sans font-bold cursor-pointer"
+                >
+                  Ok, compreendo
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </AnimatePresence>
