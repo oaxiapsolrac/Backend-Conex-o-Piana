@@ -155,6 +155,20 @@ export default function App() {
     }
   };
 
+  // Synchronously fetch and refresh proofs of care (medals/badges) on-chain
+  const syncProofs = async () => {
+    if (!user) return;
+    try {
+      const resp = await fetch('/api/demo/blockchain-state');
+      const data = await resp.json();
+      if (data && Array.isArray(data.proofOfCare)) {
+        setProofs(data.proofOfCare.filter((p: ProofOfCare) => p.userId === user.uid));
+      }
+    } catch (e) {
+      console.error('Error syncing proofs:', e);
+    }
+  };
+
   // Reset database for clear testing
   const handleReset = async () => {
     if (confirm('Deseja realmente resetar todas as tabelas simuladas e apagar os registros do banco?')) {
@@ -310,10 +324,11 @@ export default function App() {
             consents={consents}
             proofs={proofs}
             onNewProofEmitted={handleNewProofEmitted}
+            syncProofs={syncProofs}
           />
         ) : activeTab === 'assistant' ? (
           /* Step 4: Crisis-aware Ethical assistant therapist */
-          <AssistenteChat user={user} />
+          <AssistenteChat user={user} syncProofs={syncProofs} onNewProofEmitted={handleNewProofEmitted} />
         ) : (
           /* Step 6: Full transparency ledger & verify dashboard */
           <CentralTransparencia
@@ -321,6 +336,8 @@ export default function App() {
             consents={consents}
             proofs={proofs}
             simulateSolanaError={simulateSolanaError}
+            syncProofs={syncProofs}
+            onNewProofEmitted={handleNewProofEmitted}
           />
         )}
       </main>

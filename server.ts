@@ -287,9 +287,9 @@ app.get('/api/posts', (req, res) => {
   }
 });
 
-app.post('/api/posts', (req, res) => {
+app.post('/api/posts', async (req, res) => {
   try {
-    const { userId, content } = req.body;
+    const { userId, content, simulateError } = req.body;
     if (!userId || !content) {
       return res.status(400).json({ error: 'userId and content are required' });
     }
@@ -311,7 +311,45 @@ app.post('/api/posts', (req, res) => {
       createdAt: new Date().toISOString()
     });
 
-    res.json(post);
+    // Check if this is the user's first post to award 'narradora' badge
+    const userPosts = dbStore.getPosts().filter(p => p.userId === userId);
+    let narratoraBadge = null;
+
+    if (userPosts.length === 1) {
+      // First post! Emit narradora badge
+      const timestamp = new Date().toISOString();
+      const rawPayload = {
+        type: 'proof_of_care',
+        did: user.did,
+        badge: 'narradora',
+        timestamp: timestamp
+      };
+
+      let solanaTx = '';
+      let status: 'synced' | 'pending' = 'synced';
+
+      try {
+        if (simulateError) {
+          throw new Error('Simulated Solana Narrator proof failure.');
+        }
+        solanaTx = await sendToSolanaMemoProgram(rawPayload);
+      } catch (solanaError: any) {
+        status = 'pending';
+        solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
+        console.warn('Solana registration for Narrator badge failed, falling back gracefully:', solanaError.message);
+      }
+
+      narratoraBadge = dbStore.addProofOfCare({
+        id: crypto.randomUUID(),
+        userId,
+        badge: 'narradora',
+        solanaTx,
+        createdAt: timestamp,
+        status
+      });
+    }
+
+    res.json({ post, narratoraBadge });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
@@ -376,15 +414,23 @@ Gere um parágrafo acolhedor, empático e curto (máximo de 150 caracteres) em p
 
     // 4. Não existir badge duplicado nas últimas 24 horas for this sender
     const userBadges = dbStore.getProofOfCareForUser(senderId);
-    const hasNoRecentBadge = !userBadges.some((b) => {
+    const hasNoRecentAcolhedoraBadge = !userBadges.some((b) => {
+      if (b.badge !== 'acolhedora') return false;
       const badgeTime = new Date(b.createdAt);
       const diffHours = (now.getTime() - badgeTime.getTime()) / (1000 * 60 * 60);
       return diffHours < 24;
     });
 
-    const isPoCEligible = isAccountOldEnough && hasEnoughCharacters && hasNoRemovedPosts && hasNoRecentBadge;
+    const isPoCEligible = isAccountOldEnough && hasEnoughCharacters && hasNoRemovedPosts && hasNoRecentAcolhedoraBadge;
+
+    // Check for 'empatica' badge (supported 3+ different mothers)
+    const userInteractions = dbStore.getInteractions().filter((i) => i.senderId === senderId);
+    const uniqueReceiversSupported = new Set(userInteractions.map((i) => i.receiverId));
+    const hasEpaticaBadge = userBadges.some((b) => b.badge === 'empatica');
+    const shouldAwardEpatica = !hasEpaticaBadge && uniqueReceiversSupported.size >= 3;
 
     let proofOfCarePayload = null;
+    let empaticaBadgePayload = null;
 
     if (isPoCEligible) {
       // Setup payload matching spec
@@ -427,6 +473,46 @@ Gere um parágrafo acolhedor, empático e curto (máximo de 150 caracteres) em p
       };
     }
 
+    // Award empatica badge if conditions are met
+    if (shouldAwardEpatica) {
+      const timestamp = new Date().toISOString();
+      const rawPayload = {
+        type: 'proof_of_care',
+        did: sender.did,
+        badge: 'empatica',
+        timestamp: timestamp
+      };
+
+      let solanaTx = '';
+      let status: 'synced' | 'pending' = 'synced';
+
+      try {
+        if (req.body.simulateError) {
+          throw new Error('Simulated Solana Empática badge failure.');
+        }
+        solanaTx = await sendToSolanaMemoProgram(rawPayload);
+      } catch (solanaError: any) {
+        status = 'pending';
+        solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
+        console.warn('Solana registration for Empática badge failed, falling back gracefully:', solanaError.message);
+      }
+
+      dbStore.addProofOfCare({
+        id: crypto.randomUUID(),
+        userId: senderId,
+        badge: 'empatica',
+        solanaTx,
+        createdAt: timestamp,
+        status
+      });
+
+      empaticaBadgePayload = {
+        issued: true,
+        badge: 'empatica' as const,
+        solanaTx
+      };
+    }
+
     // Save dynamic interactive record
     const interactionObj = dbStore.addInteraction({
       id: crypto.randomUUID(),
@@ -446,14 +532,17 @@ Gere um parágrafo acolhedor, empático e curto (máximo de 150 caracteres) em p
       saved: true,
       ai_context: aiContext,
       proof_of_care: proofOfCarePayload,
+      empatica_badge: empaticaBadgePayload,
       rulesValidated: {
         accountAgeMinutes: Math.round(diffMinutes * 10) / 10,
         accountAgeValid: isAccountOldEnough,
         characterLength: message.trim().length,
         characterLengthValid: hasEnoughCharacters,
         noRemovedPosts: hasNoRemovedPosts,
-        noRecentBadge: hasNoRecentBadge,
-        fullyEligible: isPoCEligible
+        noRecentBadge: hasNoRecentAcolhedoraBadge,
+        fullyEligible: isPoCEligible,
+        empaticaEligible: shouldAwardEpatica,
+        uniqueReceiversSupported: uniqueReceiversSupported.size
       }
     });
 
@@ -538,7 +627,51 @@ Mensagem Exemplo do Protocolo de Crise:
       createdAt: new Date().toISOString()
     });
 
-    res.json(assistantMessage);
+    // Check if this is user's first assistant interaction to award 'pioneira' badge
+    const allUserMessages = dbStore.getAssistantMessagesForUser(userId);
+    let pioneiraBadge = null;
+
+    // If there are exactly 2 messages (user's message + assistant response), it's the first interaction
+    if (allUserMessages.length === 2) {
+      const user = dbStore.getUser(userId);
+      if (user) {
+        const timestamp = new Date().toISOString();
+        const rawPayload = {
+          type: 'proof_of_care',
+          did: user.did,
+          badge: 'pioneira',
+          timestamp: timestamp
+        };
+
+        let solanaTx = '';
+        let status: 'synced' | 'pending' = 'synced';
+
+        try {
+          if (req.body.simulateError) {
+            throw new Error('Simulated Solana Pioneira badge failure.');
+          }
+          solanaTx = await sendToSolanaMemoProgram(rawPayload);
+        } catch (solanaError: any) {
+          status = 'pending';
+          solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
+          console.warn('Solana registration for Pioneira badge failed, falling back gracefully:', solanaError.message);
+        }
+
+        pioneiraBadge = dbStore.addProofOfCare({
+          id: crypto.randomUUID(),
+          userId,
+          badge: 'pioneira',
+          solanaTx,
+          createdAt: timestamp,
+          status
+        });
+      }
+    }
+
+    res.json({
+      ...assistantMessage,
+      pioneira_badge: pioneiraBadge
+    });
 
   } catch (error: any) {
     res.status(500).json({ error: error.message });
@@ -562,6 +695,77 @@ app.get('/api/posts/:postId/interactions', (req, res) => {
     const { postId } = req.params;
     const interactions = dbStore.getInteractionsForPost(postId);
     res.json(interactions);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// 6. Validate blockchain signatures to award 'guardia' badge
+app.post('/api/proofs/validate-on-chain', async (req, res) => {
+  try {
+    const { userId, simulateError } = req.body;
+    if (!userId) {
+      return res.status(400).json({ error: 'userId is required' });
+    }
+
+    const user = dbStore.getUser(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Check if user already has guardia badge
+    const userBadges = dbStore.getProofOfCareForUser(userId);
+    const hasGuardiaBadge = userBadges.some((b) => b.badge === 'guardia');
+
+    if (hasGuardiaBadge) {
+      return res.json({ success: false, message: 'Você já possui a medalha Guardiã da Transparência', badge: null });
+    }
+
+    // Get user's consents to validate
+    const userConsents = dbStore.getConsentsForUser(userId);
+    if (userConsents.length === 0) {
+      return res.json({ success: false, message: 'Nenhum consentimento para validar', badge: null });
+    }
+
+    // Award guardia badge for validating signatures
+    const timestamp = new Date().toISOString();
+    const rawPayload = {
+      type: 'proof_of_care',
+      did: user.did,
+      badge: 'guardia',
+      timestamp: timestamp
+    };
+
+    let solanaTx = '';
+    let status: 'synced' | 'pending' = 'synced';
+
+    try {
+      if (simulateError) {
+        throw new Error('Simulated Solana Guardia badge failure.');
+      }
+      solanaTx = await sendToSolanaMemoProgram(rawPayload);
+    } catch (solanaError: any) {
+      status = 'pending';
+      solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
+      console.warn('Solana registration for Guardia badge failed, falling back gracefully:', solanaError.message);
+    }
+
+    const guardiaBadge = dbStore.addProofOfCare({
+      id: crypto.randomUUID(),
+      userId,
+      badge: 'guardia',
+      solanaTx,
+      createdAt: timestamp,
+      status
+    });
+
+    res.json({
+      success: true,
+      message: 'Medalha Guardiã da Transparência concedida com sucesso!',
+      badge: guardiaBadge,
+      validatedSignatures: userConsents.length
+    });
+
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }

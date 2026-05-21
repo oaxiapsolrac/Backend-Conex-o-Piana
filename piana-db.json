@@ -109,6 +109,36 @@
       "uid": "piana_uid_dnxzigxnc0r1779337868015",
       "did": "PIANA-DB575E95",
       "createdAt": "2026-05-21T04:31:08.024Z"
+    },
+    {
+      "uid": "piana_uid_9l1qf0514i1779339886270",
+      "did": "PIANA-D14AD4C7",
+      "createdAt": "2026-05-21T05:04:46.275Z"
+    },
+    {
+      "uid": "piana_uid_tr70ah134n1779339886268",
+      "did": "PIANA-2B2FC325",
+      "createdAt": "2026-05-21T05:04:46.279Z"
+    },
+    {
+      "uid": "piana_uid_v70tgfm76i1779342005413",
+      "did": "PIANA-1D3F8EC7",
+      "createdAt": "2026-05-21T05:40:05.424Z"
+    },
+    {
+      "uid": "piana_uid_x606fz7cxx1779342005415",
+      "did": "PIANA-6B2BC4D8",
+      "createdAt": "2026-05-21T05:40:05.428Z"
+    },
+    {
+      "uid": "piana_uid_9tdhijsm9981779342585165",
+      "did": "PIANA-BB4C843E",
+      "createdAt": "2026-05-21T05:49:45.181Z"
+    },
+    {
+      "uid": "piana_uid_kuqssr6rnn81779342585166",
+      "did": "PIANA-817B19AC",
+      "createdAt": "2026-05-21T05:49:45.183Z"
     }
   ],
   "consents": [
@@ -265,6 +295,48 @@
       "transactionId": "4zbnhaGM67rBb8Zev6G7CCNnVN2ygCdZfNyEugFc5qjmqrPoGNm3YBb4XsKm5JsrVtKtkJivdv7VKuyQhRZAooWy",
       "createdAt": "2026-05-21T04:31:15.682Z",
       "status": "synced"
+    },
+    {
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "hash": "77d5a72f766d8dc92b8fe71992a122054bffc77c25936a40519ebbec3aeac02d",
+      "transactionId": "47ZipNDGphGQAUVGDtUtSfQbVkaTkf5WrnqXdwJtUFfCu1aPX2YcWee5qpbVj2x4iM6fRjoXZ5fMfsnV2DH9ZKZy",
+      "createdAt": "2026-05-21T05:04:54.021Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "hash": "67e3e4ef9ccfc67300317c9446a5506fa17c5edd2f950472bd97396171149909",
+      "transactionId": "zEthG5UacvqzmckVEbN1PX7Gqpkh73Zz4p3j6fd9GDMk4FQCiyzXxcNgmmRr2bHyt1TPRPWu3YKgf7neaYfHuCw",
+      "createdAt": "2026-05-21T05:04:53.940Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "hash": "9b655e59f14325740e18319122cf8598174e09b07cd9adfc43dcc5702baad74a",
+      "transactionId": "4ocKTH1SCmBj7wsHBNUkxkDjbUqs4z16jT2dwi31ebPLxwgzfhbFeQSMCdWBh3RWLMrkKsqhkXBNSHqcSZ8CyR2X",
+      "createdAt": "2026-05-21T05:40:16.323Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "hash": "6e98743d97448ec895d08c2ec5b7e5da77cd99667fbeb1c5e381ea9ba4c3987c",
+      "transactionId": "2ovGKftvu4d3RAnmTRan96UMMNQGs2thfF4FqNVQsQU3FKaKzvjeKw8AVwk6fiCd6r6LGfcZdZmn6kwqnD6N3juS",
+      "createdAt": "2026-05-21T05:40:16.253Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_kuqssr6rnn81779342585166",
+      "hash": "467428791a3938f2891035a9bfbdf817c6bf83f7f88f156b509d6cbffb51f805",
+      "transactionId": "4AaLCNaEaC1yFZpAKtVhHYDgWegZq1cuoLpCe6jAoD8y3NiWM5a9G5LZXKKYZ6kujK9yVwC3yt6X4b89mpx47vLC",
+      "createdAt": "2026-05-21T05:49:53.718Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_kuqssr6rnn81779342585166",
+      "hash": "27ecf6a8ed51a218824e3ee9b0ee7a39d9ee0d0432f1f3a614b8f43d17c0adfc",
+      "transactionId": "PydUZU1nMyMbHzDW4YTxcKZoKpY34bX1Y6UZCU6L3ZUi4B1PbH56PxMNA6pNumHB6Q7A83cSWHXRYDEqmeyRcy7",
+      "createdAt": "2026-05-21T05:49:53.655Z",
+      "status": "synced"
     }
   ],
   "posts": [
@@ -288,6 +360,41 @@
       "authorDid": "PIANA-7C22040B",
       "content": "[DESABAFO] ola\n",
       "createdAt": "2026-05-21T03:35:35.981Z"
+    },
+    {
+      "id": "424058a7-4792-40bc-8322-9d5523208eb8",
+      "userId": "piana_uid_dnxzigxnc0r1779337868015",
+      "authorDid": "PIANA-DB575E95",
+      "content": "[DESABAFO] como posso ser uma melhor mãe?\n",
+      "createdAt": "2026-05-21T04:47:52.625Z"
+    },
+    {
+      "id": "4f89d27a-347d-47b3-b8b4-e9f63387fdaa",
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "authorDid": "PIANA-2B2FC325",
+      "content": "[DESABAFO] oiii",
+      "createdAt": "2026-05-21T05:19:21.970Z"
+    },
+    {
+      "id": "2f1a3f53-9b85-4d56-a6bd-3e17d12c1ab3",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "authorDid": "PIANA-6B2BC4D8",
+      "content": "[DESABAFO] oii",
+      "createdAt": "2026-05-21T05:40:46.479Z"
+    },
+    {
+      "id": "c6a23366-cb8d-437e-94e0-fae68e5d9858",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "authorDid": "PIANA-6B2BC4D8",
+      "content": "[DESABAFO] oi",
+      "createdAt": "2026-05-21T05:42:36.225Z"
+    },
+    {
+      "id": "337b9ca9-0d2b-4691-b75c-cb9d83401343",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "authorDid": "PIANA-6B2BC4D8",
+      "content": "[DESABAFO] oi",
+      "createdAt": "2026-05-21T05:42:38.840Z"
     }
   ],
   "interactions": [
@@ -372,6 +479,157 @@
         "badge": "acolhedora",
         "solanaTx": "4TTTqBkKB7kfxM682AVTZsLuJHRZFCvjTmzHCL4Bbs2CergZLsZaWCu6Dr5mfisXemmqyJxNvcXRtf52QpaMHYzi"
       }
+    },
+    {
+      "id": "07effd9b-24ae-4281-b64a-6057adc69cb5",
+      "postId": "ab769454-62d6-4bb6-9cf5-789792e5c8f0",
+      "senderId": "piana_uid_tr70ah134n1779339886268",
+      "senderDid": "PIANA-2B2FC325",
+      "receiverId": "piana_uid_8vt2xcocdgl1779306373772",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T05:07:26.784Z",
+      "ai_context": "Essa escuta empática valida o esforço materno, criando laços de afeto que fortalecem a rede de apoio e trazem a esperança de não caminhar só.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "2BWFp2FbF4HnAknFrfJz7AP4UzjAfQzR3ipL7U2vcVR4gBgswYSuEMdhpVr9VfJKJVo8NDnDdQPrmcksd9ociav5"
+      }
+    },
+    {
+      "id": "2332a438-2c06-4c96-b877-dd6c905afb14",
+      "postId": "424058a7-4792-40bc-8322-9d5523208eb8",
+      "senderId": "piana_uid_tr70ah134n1779339886268",
+      "senderDid": "PIANA-2B2FC325",
+      "receiverId": "piana_uid_dnxzigxnc0r1779337868015",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T05:19:08.273Z",
+      "ai_context": "Essa partilha acolhe e valida a jornada, transformando o isolamento em conexão afetuosa que fortalece a rede de apoio e renova a esperança diária.",
+      "proof_of_care": null
+    },
+    {
+      "id": "fba7a861-3d64-447e-ae5a-c9534951f839",
+      "postId": "4f89d27a-347d-47b3-b8b4-e9f63387fdaa",
+      "senderId": "piana_uid_tr70ah134n1779339886268",
+      "senderDid": "PIANA-2B2FC325",
+      "receiverId": "piana_uid_tr70ah134n1779339886268",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T05:21:15.777Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
+    },
+    {
+      "id": "630d1f0a-8ac0-4fa4-92a5-c6e60d52cb65",
+      "postId": "424058a7-4792-40bc-8322-9d5523208eb8",
+      "senderId": "piana_uid_tr70ah134n1779339886268",
+      "senderDid": "PIANA-2B2FC325",
+      "receiverId": "piana_uid_dnxzigxnc0r1779337868015",
+      "message": "Você é uma mãe maravilhosa e sua dedicação cura e apoia. Estou aqui por você.",
+      "createdAt": "2026-05-21T05:38:36.560Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
+    },
+    {
+      "id": "01ff2600-fb52-415b-a60f-ef364bb4b5cf",
+      "postId": "9f9b8be6-034a-4b9d-8086-e00b7e2587f1",
+      "senderId": "piana_uid_tr70ah134n1779339886268",
+      "senderDid": "PIANA-2B2FC325",
+      "receiverId": "piana_uid_p0dps2hn6qp1779334500710",
+      "message": "Não carregue toda a culpa do mundo nas costas. Descanse seu espírito, seu esforço é lindo.",
+      "createdAt": "2026-05-21T05:38:42.156Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
+    },
+    {
+      "id": "9fc5e090-1ca5-4f78-b706-84c747f74aab",
+      "postId": "ab769454-62d6-4bb6-9cf5-789792e5c8f0",
+      "senderId": "piana_uid_tr70ah134n1779339886268",
+      "senderDid": "PIANA-2B2FC325",
+      "receiverId": "piana_uid_8vt2xcocdgl1779306373772",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T05:38:48.863Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
+    },
+    {
+      "id": "4ba99103-0d67-42e0-b605-5394a1e702f0",
+      "postId": "859126b5-cfe2-4a9f-bc95-b642aa05c783",
+      "senderId": "piana_uid_tr70ah134n1779339886268",
+      "senderDid": "PIANA-2B2FC325",
+      "receiverId": "piana_uid_8vt2xcocdgl1779306373772",
+      "message": "Você é uma mãe maravilhosa e sua dedicação cura e apoia. Estou aqui por você.",
+      "createdAt": "2026-05-21T05:39:03.819Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
+    },
+    {
+      "id": "2c1a1c85-bb94-4ff5-a6cb-1f99473875f4",
+      "postId": "4f89d27a-347d-47b3-b8b4-e9f63387fdaa",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_tr70ah134n1779339886268",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-21T05:40:39.239Z",
+      "ai_context": "A empatia entre mães atípicas valida dores e celebra o amor, fortalecendo a rede de apoio que transforma o isolamento em esperança coletiva.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "2ZBmKPDi5VDcj3AtRWfjwiVDdMiya2NRCdRQukJ8BzMaq9NK3vJKBnc35y5ChToZh5ig3E29uQBs1gu1TSw61oQD"
+      }
+    },
+    {
+      "id": "8e0eb0e1-a573-4650-b47a-737a996effd0",
+      "postId": "4f89d27a-347d-47b3-b8b4-e9f63387fdaa",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_tr70ah134n1779339886268",
+      "message": "Você é uma mãe maravilhosa e sua dedicação cura e apoia. Estou aqui por você.",
+      "createdAt": "2026-05-21T05:41:29.984Z",
+      "ai_context": "Essa validação mútua entre mães atípicas fortalece a rede de apoio pelo afeto, gerando esperança e a certeza de que ninguém precisa lutar só.",
+      "proof_of_care": null
+    },
+    {
+      "id": "1c644ff4-a979-4143-864d-c7e8a3fa7d46",
+      "postId": "9f9b8be6-034a-4b9d-8086-e00b7e2587f1",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_p0dps2hn6qp1779334500710",
+      "message": "Não carregue toda a culpa do mundo nas costas. Descanse seu espírito, seu esforço é lindo.",
+      "createdAt": "2026-05-21T05:41:43.529Z",
+      "ai_context": "O acolhimento mútuo entre mães alivia o peso da culpa, fortalecendo laços de afeto que transformam a solidão em rede de apoio e esperança.",
+      "proof_of_care": null
+    },
+    {
+      "id": "07b09f52-1ff6-4b29-91bb-6aa9d2e2fa1c",
+      "postId": "859126b5-cfe2-4a9f-bc95-b642aa05c783",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_8vt2xcocdgl1779306373772",
+      "message": "Você é uma mãe maravilhosa e sua dedicação cura e apoia. Estou aqui por você.",
+      "createdAt": "2026-05-21T05:41:58.775Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
+    },
+    {
+      "id": "df7f3711-cfe8-4462-b084-5db281e4561d",
+      "postId": "2f1a3f53-9b85-4d56-a6bd-3e17d12c1ab3",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_x606fz7cxx1779342005415",
+      "message": "Não carregue toda a culpa do mundo nas costas. Descanse seu espírito, seu esforço é lindo.",
+      "createdAt": "2026-05-21T05:42:27.363Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
+    },
+    {
+      "id": "ef0c1557-9942-4382-bfd1-a7b23e671bbd",
+      "postId": "337b9ca9-0d2b-4691-b75c-cb9d83401343",
+      "senderId": "piana_uid_x606fz7cxx1779342005415",
+      "senderDid": "PIANA-6B2BC4D8",
+      "receiverId": "piana_uid_x606fz7cxx1779342005415",
+      "message": "oi mamaezinha querida",
+      "createdAt": "2026-05-21T05:43:13.525Z",
+      "ai_context": "Interações acolhedoras fortalecem redes de apoio emocional.",
+      "proof_of_care": null
     }
   ],
   "proof_of_care": [
@@ -405,6 +663,22 @@
       "badge": "acolhedora",
       "solanaTx": "4TTTqBkKB7kfxM682AVTZsLuJHRZFCvjTmzHCL4Bbs2CergZLsZaWCu6Dr5mfisXemmqyJxNvcXRtf52QpaMHYzi",
       "createdAt": "2026-05-21T04:32:16.396Z",
+      "status": "synced"
+    },
+    {
+      "id": "280387db-4a09-450b-ae55-346be92f64e2",
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "badge": "acolhedora",
+      "solanaTx": "2BWFp2FbF4HnAknFrfJz7AP4UzjAfQzR3ipL7U2vcVR4gBgswYSuEMdhpVr9VfJKJVo8NDnDdQPrmcksd9ociav5",
+      "createdAt": "2026-05-21T05:07:24.978Z",
+      "status": "synced"
+    },
+    {
+      "id": "a0fc0e70-595a-4adc-9894-2a13c0cc25b3",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "badge": "acolhedora",
+      "solanaTx": "2ZBmKPDi5VDcj3AtRWfjwiVDdMiya2NRCdRQukJ8BzMaq9NK3vJKBnc35y5ChToZh5ig3E29uQBs1gu1TSw61oQD",
+      "createdAt": "2026-05-21T05:40:37.695Z",
       "status": "synced"
     }
   ],
@@ -506,6 +780,86 @@
       "role": "assistant",
       "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
       "createdAt": "2026-05-21T03:50:16.020Z"
+    },
+    {
+      "id": "a1ce834c-e2a6-4e94-b21c-7d8c0f496015",
+      "userId": "piana_uid_dnxzigxnc0r1779337868015",
+      "role": "user",
+      "content": "Como posso conversar de forma pacífica com a escola do meu filho para exigir que eles façam adaptações de inclusão que ele tem direito?",
+      "createdAt": "2026-05-21T04:46:31.134Z"
+    },
+    {
+      "id": "a8592524-31b2-4f04-96fc-d13c4b9c710b",
+      "userId": "piana_uid_dnxzigxnc0r1779337868015",
+      "role": "assistant",
+      "content": "Olá, mamãe. Que bom que você compartilhou isso conosco. Sinta-se muito acolhida aqui. \n\nSei o quanto é cansativo ter que lutar constantemente para que os direitos do seu filho sejam respeitados. Essa jornada exige muito de nós, e o fato de você querer buscar esse diálogo de forma pacífica mostra a mãe incrível, sábia e amorosa que você é.\n\nPara conversar com a escola com o coração mais tranquilo e de forma construtiva, aqui estão alguns caminhos que podem ajudar:\n\n1. **Vá com o espírito de parceria:** Tente começar a conversa mostrando que você quer somar com a escola. Dizer algo como *\"Estou aqui para que possamos, juntos, encontrar o melhor caminho para o desenvolvimento do meu filho\"* costuma desarmar defesas.\n2. **Leve as necessidades por escrito:** Prepare uma listinha simples e afetuosa com o que funciona melhor para ele em casa (rotinas, formas de acalmar, estímulos que ele gosta). Isso ajuda a escola a entender o lado prático.\n3. **Foque no bem-estar, não no confronto:** Explique que as adaptações não são privilégios, mas pontes para que ele possa aprender e se sentir seguro e feliz no ambiente escolar.\n4. **Registre com carinho:** Depois da conversa, envie um e-mail agradecendo o tempo deles e resumindo o que ficou combinado. Isso mantém o processo organizado e documentado de forma leve.\n\nLembre-se de que você não precisa carregar esse peso sozinha. Se sentir que a conversa está difícil, busque o apoio de profissionais da pedagogia, psicologia ou até de outras mães da nossa comunidade que já passaram por isso. \n\nEstamos aqui de mãos dadas com você. Vai dar certo! Um abraço bem apertado e carinhoso.",
+      "createdAt": "2026-05-21T04:46:38.349Z"
+    },
+    {
+      "id": "18a6256f-fac8-4266-a379-b16a3e45aa79",
+      "userId": "piana_uid_dnxzigxnc0r1779337868015",
+      "role": "user",
+      "content": "nao consigo dormir, meu filho nao para de chorar",
+      "createdAt": "2026-05-21T04:46:59.111Z"
+    },
+    {
+      "id": "d6a959be-114e-4390-ba66-c9f90e7fcba9",
+      "userId": "piana_uid_dnxzigxnc0r1779337868015",
+      "role": "assistant",
+      "content": "Ah, minha querida, respira fundo. Eu sinto muito que você esteja passando por esse momento tão difícil e exaustivo agora. A privação de sono combinada com o choro do nosso pequeno nos leva ao limite do cansaço físico e emocional. É uma dor silenciosa e muito solitária.\n\nSe puder, faça uma pausa de um minutinho: coloque seu filho em um lugar seguro (como o berço ou a cama), vá até o banheiro, molhe o rosto, beba um copo de água bem fria e respire fundo três vezes. Você precisa desse pequeno respiro para acalmar o seu próprio coração.\n\nÀs vezes, quando estamos muito tensas, eles sentem essa energia e choram ainda mais. Tente apenas segurá-lo pertinho do seu peito, sem a pressão de ter que resolver tudo ou fazê-lo parar de chorar imediatamente. Só fiquem juntinhos, no escurinho, tentando respirar mansinho. \n\nExiste alguém — um parceiro, familiar, vizinho ou amiga — que você possa chamar para te dar um apoio agora ou logo pela manhã? Não carregue esse peso sozinha. Se o cansaço e o desespero ficarem pesados demais, lembre-se de que buscar ajuda de profissionais de saúde e apoio emocional é fundamental para cuidar de você.\n\nEstou aqui em pensamento com você, te mandando um abraço bem apertado e cheio de carinho. Você é uma mãe maravilhosa e está fazendo o seu melhor no meio dessa tempestade. Vai passar.",
+      "createdAt": "2026-05-21T04:47:07.635Z"
+    },
+    {
+      "id": "528025f7-6af3-4329-b5f3-c183917ac9ba",
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "role": "user",
+      "content": "Estou me sentindo extremamente sobrecarregada com a rotina de terapias e consultas essa semana. Sinto que não dou conta de tudo sozinha.",
+      "createdAt": "2026-05-21T05:29:23.238Z"
+    },
+    {
+      "id": "9800805d-4e35-4a94-8b68-c520514b377d",
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-21T05:29:24.072Z"
+    },
+    {
+      "id": "1ba29f66-5656-4808-b8e0-84f48599ba08",
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "role": "user",
+      "content": "l",
+      "createdAt": "2026-05-21T05:29:29.296Z"
+    },
+    {
+      "id": "df008e9e-1b59-4f75-9ceb-5b8c247ea68e",
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-21T05:29:29.623Z"
+    },
+    {
+      "id": "661f7639-d5c6-408a-aa87-d5e42cb9b799",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "role": "user",
+      "content": "Hoje algumas mães na pracinha julgaram o comportamento estereotipado do meu filho e fiquei com o coração partido. Me sinto sem saber o que fazer.",
+      "createdAt": "2026-05-21T05:42:44.988Z"
+    },
+    {
+      "id": "2ac4cd96-c8a4-4998-8d18-c6ce017924d1",
+      "userId": "piana_uid_x606fz7cxx1779342005415",
+      "role": "assistant",
+      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
+      "createdAt": "2026-05-21T05:42:45.585Z"
+    }
+  ],
+  "badges": [
+    {
+      "id": "108b9224-86d8-4de0-ac04-afd10b8cc2ee",
+      "userId": "piana_uid_tr70ah134n1779339886268",
+      "badge": "narradora",
+      "solanaTx": "3tPhQzR7sXiwZNRQYsVTYmojPievjtGXNGUq9yX9R9oAW38ibivdSgqxR6hcm3BQMh98Q1osuYX1XYkx7uwLNqJw",
+      "createdAt": "2026-05-21T05:19:21.972Z",
+      "status": "synced"
     }
   ]
 }

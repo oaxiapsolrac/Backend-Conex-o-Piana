@@ -21,7 +21,62 @@ interface FeedComunitarioProps {
   consents: Consent[];
   proofs: any[];
   onNewProofEmitted: (proof: any) => void;
+  syncProofs?: () => Promise<void>;
 }
+
+// All collectible badges list metadata definitions
+const ALL_BADGES = [
+  {
+    key: 'acolhedora',
+    title: 'Acolhedora Certificada',
+    desc: 'Deixou uma mensagem empática para apoiar outra mãe',
+    icon: Award,
+    color: 'from-amber-400 via-amber-300 to-amber-500',
+    colorText: 'text-amber-900',
+    colorBorder: 'border-amber-200',
+    bgSoft: 'bg-amber-500/5',
+  },
+  {
+    key: 'narradora',
+    title: 'Mãe Narradora',
+    desc: 'Publicou sua primeira história de desabafo no feed',
+    icon: FileText,
+    color: 'from-pink-400 via-pink-300 to-pink-500',
+    colorText: 'text-pink-900',
+    colorBorder: 'border-pink-200',
+    bgSoft: 'bg-pink-500/5',
+  },
+  {
+    key: 'pioneira',
+    title: 'Pioneira da Rede',
+    desc: 'Conversou com a Piana, nossa assistente de suporte',
+    icon: Sparkles,
+    color: 'from-purple-400 via-purple-300 to-purple-500',
+    colorText: 'text-purple-900',
+    colorBorder: 'border-purple-200',
+    bgSoft: 'bg-purple-500/5',
+  },
+  {
+    key: 'empatica',
+    title: 'Super Empática',
+    desc: 'Apoiou 3 ou mais mães com mensagens de afeto',
+    icon: Heart,
+    color: 'from-rose-400 via-rose-300 to-rose-500',
+    colorText: 'text-rose-905',
+    colorBorder: 'border-rose-250',
+    bgSoft: 'bg-rose-500/5',
+  },
+  {
+    key: 'guardia',
+    title: 'Guardiã da Transparência',
+    desc: 'Validou as assinaturas criptográficas on-chain da blockchain',
+    icon: ShieldCheck,
+    color: 'from-emerald-400 via-emerald-300 to-emerald-500',
+    colorText: 'text-emerald-900',
+    colorBorder: 'border-emerald-200',
+    bgSoft: 'bg-emerald-500/5',
+  }
+];
 
 // Preset comfort suggestions to assist mothers in drafting empathetic replies
 const EMPATHETIC_PRESETS = [
@@ -180,6 +235,7 @@ export default function FeedComunitario({
   consents,
   proofs,
   onNewProofEmitted,
+  syncProofs,
 }: FeedComunitarioProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoadingPosts, setIsLoadingPosts] = useState(true);
@@ -264,8 +320,23 @@ export default function FeedComunitario({
       });
       const data = await resp.json();
       if (!data.error) {
-        setPosts([data, ...posts]);
+        setPosts([data.post, ...posts]);
         setNewPostContent('');
+        
+        // Check if narradora badge was awarded
+        if (data.narratoraBadge && onNewProofEmitted) {
+          onNewProofEmitted({
+            userId: user.uid,
+            badge: 'narradora',
+            solanaTx: data.narratoraBadge.solanaTx,
+            createdAt: data.narratoraBadge.createdAt,
+            status: data.narratoraBadge.status,
+          });
+        }
+
+        if (syncProofs) {
+          syncProofs().catch(e => console.error('Error syncing narrative proof:', e));
+        }
       } else {
         setPostError(data.error);
       }
@@ -317,6 +388,21 @@ export default function FeedComunitario({
           createdAt: new Date().toISOString(),
           status: simulateSolanaError ? 'pending' : 'synced',
         });
+      }
+
+      // Check if empatica badge was awarded
+      if (data.empatica_badge && data.empatica_badge.issued) {
+        onNewProofEmitted({
+          userId: user.uid,
+          badge: 'empatica',
+          solanaTx: data.empatica_badge.solanaTx,
+          createdAt: new Date().toISOString(),
+          status: simulateSolanaError ? 'pending' : 'synced',
+        });
+      }
+
+      if (syncProofs) {
+        syncProofs().catch(e => console.error('Error syncing dynamic interaction proof:', e));
       }
 
       // Automatically sync expanded thread if open
@@ -427,24 +513,63 @@ export default function FeedComunitario({
 
           {/* Interactive Medalhas section */}
           <div className="bg-white rounded-2xl border border-stone-150 p-4 shadow-piana space-y-3">
-            <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">Minhas Medalhas</span>
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">Minhas Medalhas ({myProofsCount}/5)</span>
+              <span className="text-[9px] text-emerald-500 font-bold flex items-center gap-1 bg-emerald-55/10 px-1.5 py-0.5 rounded-md">
+                <span className="h-1 w-1 bg-emerald-550 rounded-full animate-ping"></span>
+                Web3 NFT Ativo
+              </span>
+            </div>
             
-            {hasAcolhedoraBadge ? (
-              <div className="p-3 rounded-2xl bg-amber-500/5 border border-amber-200 text-center relative overflow-hidden">
-                <DigitalCareCoin />
-                <p className="text-xs font-black text-amber-900 mt-1">
-                  Acolhedora Certificada
-                </p>
-                <p className="text-[9px] text-amber-600 font-mono">Proof of Care On-chain</p>
-              </div>
-            ) : (
-              <div className="text-center p-5 bg-piana-bg border border-stone-100 rounded-2xl space-y-2">
-                <Award className="w-6 h-6 text-stone-300 mx-auto" />
-                <p className="text-[11px] text-stone-500 leading-normal font-sans font-medium">
-                  Deixe uma mensagem acolhedora a outra mãe para receber seu selo de apoio e empatia.
-                </p>
-              </div>
-            )}
+            <div className="space-y-2">
+              {ALL_BADGES.map((badge) => {
+                const proof = proofs.find((p) => p.badge === badge.key && p.userId === user.uid);
+                const isEarned = !!proof;
+                const BadgeIcon = badge.icon;
+                
+                return (
+                  <div 
+                    key={badge.key}
+                    className={`p-2.5 rounded-xl border text-left transition duration-200 relative ${
+                      isEarned 
+                        ? `${badge.bgSoft} ${badge.colorBorder} hover:shadow-xs` 
+                        : 'bg-stone-50/50 border-stone-150/60 opacity-60'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 shadow-2xs ${
+                        isEarned 
+                          ? `bg-gradient-to-tr ${badge.color} text-white` 
+                          : 'bg-stone-200 text-stone-400'
+                      }`}>
+                        <BadgeIcon className="w-4 h-4" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between">
+                          <p className={`text-[11px] font-bold ${isEarned ? 'text-stone-900 font-extrabold' : 'text-stone-500 font-medium'}`}>
+                            {badge.title}
+                          </p>
+                          {isEarned && (
+                            <span className="text-[8px] bg-emerald-500/10 text-emerald-700 px-1 py-0.2 rounded font-black uppercase tracking-wider font-mono">
+                              NFT
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-[9px] text-stone-400 font-medium leading-tight truncate" title={badge.desc}>
+                          {badge.desc}
+                        </p>
+                      </div>
+                    </div>
+                    {isEarned && (
+                      <div className="mt-1.5 pt-1 border-t border-stone-100 flex items-center justify-between text-[8px] text-stone-400 font-mono">
+                        <span className="truncate max-w-[130px]" title={proof.solanaTx}>Tx ID: {proof.solanaTx}</span>
+                        <span className="capitalize">{proof.status === 'synced' ? '● on-chain' : '⏱ pendente'}</span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           {/* Privacy Security Protection Card */}

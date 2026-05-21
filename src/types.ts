@@ -37,7 +37,7 @@ export interface Interaction {
   ai_context?: string;
   proof_of_care?: {
     issued: boolean;
-    badge: 'acolhedora';
+    badge: 'acolhedora' | 'narradora' | 'pioneira' | 'empatica' | 'guardia';
     solanaTx: string;
   } | null;
 }
@@ -45,7 +45,7 @@ export interface Interaction {
 export interface ProofOfCare {
   id: string;
   userId: string;
-  badge: 'acolhedora';
+  badge: 'acolhedora' | 'narradora' | 'pioneira' | 'empatica' | 'guardia';
   solanaTx: string;
   createdAt: string;
   status: 'synced' | 'pending';

@@ -73,7 +73,13 @@ function DidAvatar({ did, size = 32 }: { did: string; size?: number }) {
   );
 }
 
-export default function AssistenteChat({ user }: AssistenteChatProps) {
+interface AssistenteChatProps {
+  user: User;
+  syncProofs?: () => Promise<void>;
+  onNewProofEmitted?: (proof: any) => void;
+}
+
+export default function AssistenteChat({ user, syncProofs, onNewProofEmitted }: AssistenteChatProps) {
   const [messages, setMessages] = useState<AssistantMessage[]>([]);
   const [inputVal, setInputVal] = useState('');
   const [isSending, setIsSending] = useState(false);
@@ -145,6 +151,21 @@ export default function AssistenteChat({ user }: AssistenteChatProps) {
       const data = await resp.json();
       if (!data.error) {
         setMessages((prev) => [...prev, data]);
+        
+        // Check if pioneira badge was awarded
+        if (data.pioneira_badge && onNewProofEmitted) {
+          onNewProofEmitted({
+            userId: user.uid,
+            badge: 'pioneira',
+            solanaTx: data.pioneira_badge.solanaTx,
+            createdAt: data.pioneira_badge.createdAt,
+            status: data.pioneira_badge.status,
+          });
+        }
+
+        if (syncProofs) {
+          syncProofs().catch(e => console.error('Error syncing proofs inside chat:', e));
+        }
       } else {
         throw new Error(data.error);
       }

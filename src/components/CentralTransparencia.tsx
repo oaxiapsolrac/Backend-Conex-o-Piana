@@ -17,6 +17,8 @@ interface CentralTransparenciaProps {
   consents: Consent[];
   proofs: ProofOfCare[];
   simulateSolanaError: boolean;
+  syncProofs?: () => Promise<void>;
+  onNewProofEmitted?: (proof: any) => void;
 }
 
 // SHA-256 client side helper using native Web Cryptography API
@@ -40,7 +42,9 @@ export default function CentralTransparencia({
   user,
   consents,
   proofs,
-  simulateSolanaError
+  simulateSolanaError,
+  syncProofs,
+  onNewProofEmitted,
 }: CentralTransparenciaProps) {
   // Navigation internal mode
   const [activeSubTab, setActiveSubTab] = useState<'verificador' | 'blockchain' | 'firestore'>('verificador');
@@ -122,6 +126,32 @@ export default function CentralTransparencia({
         matchedTx: foundConsent,
         message: 'ASSINATURA CRIPTOGRÁFICA REGISTRADA INDUBITAVELMENTE NO METADADO DA TRANSACÃO SOLANA DEVNET!'
       });
+      // Automatically award the 'guardia' badge on successful validator usage
+      try {
+        const resp = await fetch('/api/proofs/validate-on-chain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userId: user.uid,
+            simulateError: false
+          }),
+        });
+        const badgeData = await resp.json();
+        if (badgeData.success && badgeData.badge && onNewProofEmitted) {
+          onNewProofEmitted({
+            userId: user.uid,
+            badge: 'guardia',
+            solanaTx: badgeData.badge.solanaTx,
+            createdAt: badgeData.badge.createdAt,
+            status: badgeData.badge.status,
+          });
+        }
+        if (syncProofs) {
+          await syncProofs();
+        }
+      } catch (badgeErr) {
+        console.error('Failed to claim Transparency Guardian badge:', badgeErr);
+      }
     } else {
       // Just simulate if no matches exist but maybe user tweaked something
       setValidationResult({
