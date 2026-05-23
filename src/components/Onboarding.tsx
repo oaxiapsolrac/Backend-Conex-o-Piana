@@ -32,7 +32,9 @@ export default function Onboarding({ onStartSession, isLoading }: OnboardingProp
             return prev + 1;
           } else {
             clearInterval(interval);
-            onStartSession();
+            setTimeout(() => {
+              onStartSession();
+            }, 0);
             return prev;
           }
         });

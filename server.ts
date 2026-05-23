@@ -8,7 +8,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { createServer as createViteServer } from 'vite';
 import { dbStore } from './src/backend-db';
-import { GoogleGenAI } from '@google/genai';
+import Groq from 'groq-sdk';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -18,15 +18,12 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// Initialize Gemini SDK with telemetry header
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY || '',
-  httpOptions: {
-    headers: {
-      'User-Agent': 'aistudio-build',
-    },
-  },
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY || '', 
 });
+console.log('[Conexão Piana] IA inicializada: llama-3.1-8b-instant');
+console.log('[Conexão Piana] Solana Network:', process.env.SOLANA_NETWORK || 'devnet');
+console.log('[Conexão Piana] Servidor pronto para demo.');
 
 // Helper for SHA256 hashing
 function generateSHA256(text: string): string {
@@ -280,8 +277,16 @@ app.get('/api/demo/blockchain-state', (req, res) => {
   res.json({ consents, proofOfCare });
 });
 
+const DEMO_ADMIN_TOKEN = process.env.DEMO_ADMIN_TOKEN || 'piana-demo-2026';
+
 // Endpoint to fetch raw Firestore simulated state collections
 app.get('/api/demo/firestore-raw', (req, res) => {
+  const token = req.headers['x-demo-token'] || req.query.token;
+  if (token !== DEMO_ADMIN_TOKEN) {
+    return res.status(401).json({ 
+      error: 'Acesso restrito. Token de demonstração necessário.' 
+    });
+  }
   try {
     res.json({
       users: dbStore.getUsers(),
@@ -477,25 +482,27 @@ app.post('/api/interactions', async (req, res) => {
     const post = posts.find((p) => p.id === postId);
     const receiverId = post ? post.userId : '';
 
-    // Step A: Call Gemini to generate the welcoming, context summary (`ai_context`)
-    // Prompt is simple, focusing ONLY on the general context of support, as requested.
+  
     let aiContext = 'Interações acolhedoras fortalecem redes de apoio emocional.';
     try {
-      if (process.env.GEMINI_API_KEY) {
-        const response = await ai.models.generateContent({
-          model: 'gemini-3.5-flash',
-          contents: `Analise brevemente o texto de apoio enviado por uma mãe de criança atípica para outra: "${message}". 
-Gere um parágrafo acolhedor, empático e curto (máximo de 150 caracteres) em português explicando como esta interação fortalece as redes comunitárias de apoio e traz esperança. Responda apenas com a análise direta, sem aspas.`,
-          config: {
-            temperature: 0.7,
-          }
+      if (process.env.GROQ_API_KEY) {
+        const response = await groq.chat.completions.create({
+          messages: [
+            {
+              role: 'user',
+              content: `Analise brevemente o texto de apoio enviado por uma mãe de criança atípica para outra: "${message}". Gere um parágrafo acolhedor, empático e curto (máximo de 150 caracteres) em português explicando como esta interação fortalece as redes comunitárias de apoio e traz esperança. Responda apenas com a análise direta, sem aspas.`
+            }
+          ],
+          model: 'llama-3.1-8b-instant', // Modelo rápido e eficiente da Groq
+          temperature: 0.7,
         });
-        if (response.text) {
-          aiContext = response.text.trim();
+
+        if (response.choices[0]?.message?.content) {
+          aiContext = response.choices[0].message.content.trim();
         }
       }
     } catch (aiError: any) {
-      console.error('Gemini call failed during interaction analyzing, using fallback context:', aiError.message);
+      console.error('Groq call failed during interaction analyzing, using fallback context:', aiError.message);
     }
 
     // Step B: REGRAS DETERMINÍSTICAS (Deterministiic Rules check for Proof of Care)
@@ -510,6 +517,9 @@ Gere um parágrafo acolhedor, empático e curto (máximo de 150 caracteres) em p
 
     // 3. Usuária sem posts removidos (posts labeled as spam/abuse)
     // For this simulation, we consider the user is always premium unless explicitly flagged
+    // MVP: Regra simulada. Implementação completa conectaria
+    // ao histórico de moderação para verificar posts removidos.
+    // Declarar abertamente na apresentação se perguntado.
     const hasNoRemovedPosts = true; 
 
     // 4. Não existir badge duplicado nas últimas 24 horas for this sender
@@ -694,28 +704,28 @@ Mensagem Exemplo do Protocolo de Crise:
     let aiReply = "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.";
 
     try {
-      if (process.env.GEMINI_API_KEY) {
-        // Map history to contents payload
-        const contents = lastConversations.map((msg) => ({
-          role: msg.role === 'user' ? 'user' : 'model',
-          parts: [{ text: msg.content }]
-        }));
+      if (process.env.GROQ_API_KEY) {
+        // Mapeia o histórico para o formato da Groq (Role 'model' vira 'assistant')
+        const messages: any[] = [
+          { role: 'system', content: systemInstruction },
+          ...lastConversations.map((msg) => ({
+            role: msg.role === 'user' ? 'user' : 'assistant',
+            content: msg.content
+          }))
+        ];
 
-        const response = await ai.models.generateContent({
-          model: 'gemini-3.5-flash',
-          contents: contents,
-          config: {
-            systemInstruction: systemInstruction,
-            temperature: 0.7,
-          }
+        const response = await groq.chat.completions.create({
+          messages: messages,
+          model: 'llama-3.1-8b-instant',
+          temperature: 0.7,
         });
 
-        if (response.text) {
-          aiReply = response.text.trim();
+        if (response.choices[0]?.message?.content) {
+          aiReply = response.choices[0].message.content.trim();
         }
       }
     } catch (aiError: any) {
-      console.error('Gemini call failed during assistant chat, returning compassionate default:', aiError.message);
+      console.error('Groq call failed during assistant chat, returning compassionate default:', aiError.message);
     }
 
     // Save assistant response to history

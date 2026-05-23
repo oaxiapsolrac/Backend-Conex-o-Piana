@@ -46,6 +46,9 @@ export default function App() {
   const [isInitializing, setIsInitializing] = useState(true);
 
   // Demotoolbar state
+  // DEMO: bypassAgeCheck=true desativa a regra dos 10 minutos
+  // para permitir demonstração imediata.
+  // A DemoToolbar permite ativar/desativar ao vivo durante a apresentação.
   const [bypassAgeCheck, setBypassAgeCheck] = useState(true); // default true for immediate demo success!
   const [simulateSolanaError, setSimulateSolanaError] = useState(false);
 
@@ -63,6 +66,9 @@ export default function App() {
   // Success message toasts triggered during transitions
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'warning' } | null>(null);
 
+  // DEMO: Sessão persistida via localStorage.
+  // Usar sempre o mesmo navegador durante a apresentação.
+  // Não trocar de dispositivo durante a demo.
   // Load session from localStorage on mount
   const loadSession = async () => {
     try {
