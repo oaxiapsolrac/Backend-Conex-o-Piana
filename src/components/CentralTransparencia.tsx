@@ -18,7 +18,6 @@ interface CentralTransparenciaProps {
   proofs: ProofOfCare[];
   simulateSolanaError: boolean;
   syncProofs?: () => Promise<void>;
-  onNewProofEmitted?: (proof: any) => void;
 }
 
 // SHA-256 client side helper using native Web Cryptography API
@@ -44,7 +43,6 @@ export default function CentralTransparencia({
   proofs,
   simulateSolanaError,
   syncProofs,
-  onNewProofEmitted,
 }: CentralTransparenciaProps) {
   // Navigation internal mode
   const [activeSubTab, setActiveSubTab] = useState<'verificador' | 'blockchain' | 'firestore'>('verificador');
@@ -128,24 +126,11 @@ export default function CentralTransparencia({
       });
       // Automatically award the 'guardia' badge on successful validator usage
       try {
-        const resp = await fetch('/api/proofs/validate-on-chain', {
+        await fetch('/api/proofs/validate-on-chain', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            userId: user.uid,
-            simulateError: false
-          }),
+          body: JSON.stringify({ userId: user.uid, simulateError: simulateSolanaError }),
         });
-        const badgeData = await resp.json();
-        if (badgeData.success && badgeData.badge && onNewProofEmitted) {
-          onNewProofEmitted({
-            userId: user.uid,
-            badge: 'guardia',
-            solanaTx: badgeData.badge.solanaTx,
-            createdAt: badgeData.badge.createdAt,
-            status: badgeData.badge.status,
-          });
-        }
         if (syncProofs) {
           await syncProofs();
         }
@@ -199,7 +184,7 @@ export default function CentralTransparencia({
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <span className="inline-flex items-center gap-1.5 bg-[#1877f2]/10 text-[#1877f2] text-[10.5px] px-2.5 py-1 rounded-full font-sans font-bold uppercase tracking-wider mb-2.5">
-              <Code className="w-3.5 h-3.5" /> Garantia de Privacidade e Segurança
+              <Code className="w-3.5 h-3.5" /> Tela 6 • Garantia de Privacidade e Segurança
             </span>
             <h1 className="text-2xl md:text-3xl font-sans font-black tracking-tight text-slate-900 leading-tight">
               Sua Privacidade Protegida e Inviolável

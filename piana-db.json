@@ -11,95 +11,473 @@
       "createdAt": "2026-05-23T04:50:36.603Z"
     },
     {
-      "uid": "piana_uid_h6pescdyd81779511836595",
-      "did": "PIANA-3555C806",
-      "createdAt": "2026-05-23T04:50:36.605Z"
+      "uid": "piana_uid_fe3xkos1bu41779550449256",
+      "did": "PIANA-73E801DE",
+      "createdAt": "2026-05-23T15:34:09.295Z"
+    },
+    {
+      "uid": "piana_uid_xmp96qmlrg1779550449257",
+      "did": "PIANA-E6BC335C",
+      "createdAt": "2026-05-23T15:34:09.299Z"
+    },
+    {
+      "uid": "piana_uid_unsqn1xum9b1779550666316",
+      "did": "PIANA-24DC4EFA",
+      "createdAt": "2026-05-23T15:37:46.325Z"
+    },
+    {
+      "uid": "piana_uid_s2w2sru38rg1779550666318",
+      "did": "PIANA-B966F095",
+      "createdAt": "2026-05-23T15:37:46.327Z"
+    },
+    {
+      "uid": "piana_uid_33iqw2esita1779558745339",
+      "did": "PIANA-171DDC8D",
+      "createdAt": "2026-05-23T17:52:25.352Z"
+    },
+    {
+      "uid": "piana_uid_g26ac9rjqoa1779558745341",
+      "did": "PIANA-98E3166C",
+      "createdAt": "2026-05-23T17:52:25.355Z"
+    },
+    {
+      "uid": "piana_uid_nciie17vr5k1780254333118",
+      "did": "PIANA-5D97E502",
+      "createdAt": "2026-05-31T19:05:33.159Z"
+    },
+    {
+      "uid": "piana_uid_2625dzclec21780254333118",
+      "did": "PIANA-0753CC2F",
+      "createdAt": "2026-05-31T19:05:33.163Z"
+    },
+    {
+      "uid": "piana_uid_kxgyub74w4a1780254483045",
+      "did": "PIANA-C5DFEBE6",
+      "createdAt": "2026-05-31T19:08:03.054Z"
+    },
+    {
+      "uid": "piana_uid_s8xr7vwihq1780254483046",
+      "did": "PIANA-83C26689",
+      "createdAt": "2026-05-31T19:08:03.058Z"
+    },
+    {
+      "uid": "piana_uid_p9ehax6ofj1780255037150",
+      "did": "PIANA-08EAC565",
+      "createdAt": "2026-05-31T19:17:17.161Z"
+    },
+    {
+      "uid": "piana_uid_oqmdt90wnq1780255037151",
+      "did": "PIANA-033B5EE4",
+      "createdAt": "2026-05-31T19:17:17.166Z"
+    },
+    {
+      "uid": "piana_uid_gve58pbrrvo1780255208398",
+      "did": "PIANA-74BA1A02",
+      "createdAt": "2026-05-31T19:20:08.408Z"
+    },
+    {
+      "uid": "piana_uid_zvb5xzagmrl1780255208399",
+      "did": "PIANA-0B1153A8",
+      "createdAt": "2026-05-31T19:20:08.411Z"
+    },
+    {
+      "uid": "piana_uid_ntylg98eci1780256841249",
+      "did": "PIANA-ABA8EE73",
+      "createdAt": "2026-05-31T19:47:21.284Z"
+    },
+    {
+      "uid": "piana_uid_a1iizmgsqt1780256841251",
+      "did": "PIANA-2444106C",
+      "createdAt": "2026-05-31T19:47:21.288Z"
     }
   ],
   "consents": [
     {
-      "userId": "piana_uid_h6pescdyd81779511836595",
-      "hash": "2bc9579d360b8b23d14e7a2c37961dc771d8480abbbdf0cc66bfc5c015412726",
-      "transactionId": "4uULfPAR3oTWEtqnrPFSKwpWVGoLogXQzJjsvdV6AxcopVAcXXotbrv9sggMUmmjXD8QNT9RtiNWSvgqUrk148ug",
-      "createdAt": "2026-05-23T04:50:47.572Z",
+      "userId": "piana_uid_xmp96qmlrg1779550449257",
+      "hash": "07a8dd0fc9b7a5a758affadf08b870340c9e7b2e2f0fe80ae635a1d39e8238e6",
+      "transactionId": "2TEcsSmwjWZZAPTB6s7z5XkAF7rPgKXvNrX3gzm66KHxU3dGp4zSkz4ojQ1umW5Yh7fYrZYssEXkMizqEJwwtAz6",
+      "createdAt": "2026-05-23T15:34:16.521Z",
       "status": "synced"
     },
     {
-      "userId": "piana_uid_h6pescdyd81779511836595",
-      "hash": "a2b65926781039651535c9da61a41bbe8ddd4397a091552f17142d957386d069",
-      "transactionId": "YQpw1ajBMWdUa6Q92JKpWsdAXt8DtiTaMEnpPURLhye9AMi9gpZqNBQPnNQZJp9NYRZwoacD5D9wcpWaW3Qox8J",
-      "createdAt": "2026-05-23T04:50:47.473Z",
+      "userId": "piana_uid_xmp96qmlrg1779550449257",
+      "hash": "bc5e54fa2a24ef4c21a6aa721c638b971c631b196553ff9b8c545dfb35dea0b2",
+      "transactionId": "4eYW4s4c7jyumqF8eQsCitnrxgHzwSo5xzwiTtgKRqMqWjHeU85FJvNNQgYDDszypAM5pyCGYUgrQhgcaWbALraV",
+      "createdAt": "2026-05-23T15:34:16.606Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_s2w2sru38rg1779550666318",
+      "hash": "ff9abd2e4ff8050f8ccf5acea9e07a94d8d29d2e56b30696ddc0caf50cae1bb9",
+      "transactionId": "rkMxnq8fm2dMcGSZpSvQC6qh73WUaXBTeLEhqehB14aTatC7f82g8Dm4JAFwXKmNFfqE1etBCgqeXLCDuwFENe4",
+      "createdAt": "2026-05-23T15:37:55.820Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_s2w2sru38rg1779550666318",
+      "hash": "32023249a529a9af9f7d88c773036acc82846d72cef0e123ede39cfe7101a46f",
+      "transactionId": "2DSRhW2fiN7x3oeENteFZ3C77cssycjTdJgCkH6Ne6Yz6yXs6L9mUSAwyUgA1xoQkHZWeLuYkVDghGBQG9vwBKua",
+      "createdAt": "2026-05-23T15:37:55.827Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_g26ac9rjqoa1779558745341",
+      "hash": "9480268c6aa26d9301d11a9ac9a31fdd3900e6b940b737203bedd6d6173fdd3d",
+      "transactionId": "4MmSyhrTyVeCkaW1XKQuZpp1kHhkNwR5pWDE5oKGMWAqAxHxYn5SWYpTt6En5ovMXMGLmZij5gyJQEfbMBRfMDni",
+      "createdAt": "2026-05-23T17:52:32.125Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_g26ac9rjqoa1779558745341",
+      "hash": "9e8ffaa3f655d8839887de366ddd91dcd06f57b23251891dfd36105670fdcf4d",
+      "transactionId": "3KtfLwpt51kMn3hGhMrZizGigtmmrYw386tCZ2VmNt3LpUdzaihSC66VFKCkRvwe4G8pAQe98DqRPFLnCYKgkayH",
+      "createdAt": "2026-05-23T17:52:32.208Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_2625dzclec21780254333118",
+      "hash": "566e88c8d8340feee54df458f30ce37c204dd60e166f67168a0e116eb3ff7832",
+      "transactionId": "2Zu3WgUaqMBagoVuyjMpBxLou3o6JMKfH1uz2u5sdjwbgXLjKB8ZeomgQLthLmFdgE1kpGztjxEKxFmPz2DyFZRZ",
+      "createdAt": "2026-05-31T19:05:41.483Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_2625dzclec21780254333118",
+      "hash": "899d4f059f8190eb0c6ace52b53e27ed6ae6ca437ae4fc8aaa167743c7a84c08",
+      "transactionId": "5yWEoxpK47bCmbhWeKbQktEgsRkrfdJn9C8b5uXzbGaDWKfawRfmjCXncS3nhFADDYYUpCGjaAmTXCzHJbPUR4iW",
+      "createdAt": "2026-05-31T19:05:41.576Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_s8xr7vwihq1780254483046",
+      "hash": "51f54ea20993afbff238afade345e49f88d2c3c5179de136a9e0f94b86203f0b",
+      "transactionId": "23jrWFS9Y7umnNeNe5XEMvtqSRyWLNZaRcAmhCf6gKthXGCNfBa5XowaLbvLXQ2eMf1eoA8YvLnMKCvgc3sq6Ajt",
+      "createdAt": "2026-05-31T19:08:17.311Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_s8xr7vwihq1780254483046",
+      "hash": "b6d6833519089266203643367e3d23174ce6d061b66a3802e9b4c61301274ac4",
+      "transactionId": "4aHv3DQ7eZbc1YaBdu7qNRxqeYjCD2cn8hFLQ6TgrNRdyHHCEyviGxN1bj1MrPA2sQySehykJWJtnVg1VFB1ERuW",
+      "createdAt": "2026-05-31T19:08:17.303Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_oqmdt90wnq1780255037151",
+      "hash": "09dc7865852192af88242cdbb4591cd955d606983af14dc5dadc8da17373dcdb",
+      "transactionId": "5GBaCDvrprs8PcZRdxtz6WBy6wHLnvW9A5dsX3rs27ppyVMwwaXNGCqf9XBaddMP3gViLgzipW2PHB1CBaSNyP5T",
+      "createdAt": "2026-05-31T19:17:25.601Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_oqmdt90wnq1780255037151",
+      "hash": "41bd1a942a4e4fe6e5f4155f06fc89aee9e0015cf9763e9c4789709e12b0c28d",
+      "transactionId": "5zN6BGzRyDTgYbWBtnggy9uM8HYvjMH4Wi99YJ89iw5xr4mhBZa1G4dwBYhyMYTQYdmCV35b5oFiutDFUkLJNHs4",
+      "createdAt": "2026-05-31T19:17:25.610Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_zvb5xzagmrl1780255208399",
+      "hash": "37a6936bdd8968071f7f94bc5f6dcff5facfbc00f30db0edc0bf0b3f3c8224e3",
+      "transactionId": "cFiXpYdwWEqqrH6Vzqqtkcng2jitehoahbAZPMAjHgnqTUcpEUXuvsTfWxi1iuxCNg6kbQAK9q7Z4n2HHfgRA92",
+      "createdAt": "2026-05-31T19:20:17.148Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_zvb5xzagmrl1780255208399",
+      "hash": "85eb04e6089ed1acde3279a924c270de3f702a25ddd64bd6576c90b9a153d23d",
+      "transactionId": "2aFnHKHrx7xnAnTHTDjS34W8yo571Z7gbLwFVMrAEo4RLhtEHWYxQ3FCjMKm94AAM5ufmN69zpwGpnwQrxpxtRf9",
+      "createdAt": "2026-05-31T19:20:17.154Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_a1iizmgsqt1780256841251",
+      "hash": "77b9bc4d83a0e99eccfda09e718c735aeaafad54f891bda9464c30387ed310dc",
+      "transactionId": "421h2NaUnVwfZVAMrVaMfPNJWcySnLY8S6nwgZALYDaFHx7emDpBnojsmgWfmMk5zVTwkWeysEdNSFAr6oquku8f",
+      "createdAt": "2026-05-31T19:47:32.136Z",
+      "status": "synced"
+    },
+    {
+      "userId": "piana_uid_a1iizmgsqt1780256841251",
+      "hash": "3ae85bcd0d27b375ff3376fdecb9a5c8df7b51f7d7c0f1d05c5a59b848efbc85",
+      "transactionId": "29B7u1Vkr9SJQHouQTyEafPFXvFefBjwksSjQHNDTesyFyFGde4SFEYq8sbLqSgzf7da7dwN3s8w6RgdFXHPGxcY",
+      "createdAt": "2026-05-31T19:47:32.235Z",
       "status": "synced"
     }
   ],
-  "posts": [],
-  "interactions": [],
+  "posts": [
+    {
+      "id": "e7617598-680b-4ba3-8385-67fc75f97029",
+      "userId": "piana_uid_s2w2sru38rg1779550666318",
+      "authorDid": "PIANA-B966F095",
+      "content": "[DESABAFO] ola maes ",
+      "createdAt": "2026-05-23T15:47:00.239Z"
+    },
+    {
+      "id": "c3cb8dd9-bb4f-4f29-b37c-90f82d6e4f54",
+      "userId": "piana_uid_2625dzclec21780254333118",
+      "authorDid": "PIANA-0753CC2F",
+      "content": "[DESABAFO] Boa tarde",
+      "createdAt": "2026-05-31T19:05:57.929Z"
+    },
+    {
+      "id": "e3f27ce0-4eba-4152-aa7b-6ad8b89e9061",
+      "userId": "piana_uid_s8xr7vwihq1780254483046",
+      "authorDid": "PIANA-83C26689",
+      "content": "[DESABAFO] meu nome é marilia\n",
+      "createdAt": "2026-05-31T19:08:43.299Z"
+    },
+    {
+      "id": "bd613508-716c-409f-83d0-392c3dffca8e",
+      "userId": "piana_uid_a1iizmgsqt1780256841251",
+      "authorDid": "PIANA-2444106C",
+      "content": "[DESABAFO] ola",
+      "createdAt": "2026-05-31T19:48:22.664Z"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "69e0d969-c0ca-4d05-a919-21bfbd252785",
+      "postId": "e7617598-680b-4ba3-8385-67fc75f97029",
+      "senderId": "piana_uid_g26ac9rjqoa1779558745341",
+      "senderDid": "PIANA-98E3166C",
+      "receiverId": "piana_uid_s2w2sru38rg1779550666318",
+      "message": "Você é uma mãe maravilhosa e sua dedicação cura e apoia. Estou aqui por você.",
+      "createdAt": "2026-05-23T17:53:41.649Z",
+      "ai_context": "Essa interação fortalece as redes comunitárias de apoio ao proporcionar um ambiente acolhedor e empático, onde as mães podem se sentir ouvidas e compreendidas. Isso traz esperança e reforça a ideia de que elas não estão sozinhas em sua jornada, podendo compartilhar experiências e aprender umas com as outras.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "49MW89VAApvzHjGxi7vZ8XeSwLZMFSk3dccSoepYgHniHXtn2iMwKbyunTnhCYTZU3XT25K7NiKTyksMFAAJEJtS"
+      }
+    },
+    {
+      "id": "4b573cf2-e9e0-4ea0-9ddf-3277e44405b8",
+      "postId": "e7617598-680b-4ba3-8385-67fc75f97029",
+      "senderId": "piana_uid_g26ac9rjqoa1779558745341",
+      "senderDid": "PIANA-98E3166C",
+      "receiverId": "piana_uid_s2w2sru38rg1779550666318",
+      "message": "Você é uma mãe maravilhosa e sua dedicação cura e apoia. Estou aqui por você.",
+      "createdAt": "2026-05-23T17:54:28.573Z",
+      "ai_context": "Essa interação fortalece as redes comunitárias de apoio ao demonstrar solidariedade e compreensão. A mãe que envia o texto de apoio cria um ambiente seguro, onde a outra mãe se sente acolhida e validada. Isso traz esperança e motivação para as mães de crianças atípicas, que podem se sentir isoladas ou sobrecarregadas. A interação reforça a importância de uma rede de apoio e solidariedade, que pode ajudar a lidar com os desafios e os sentimentos de solidão que muitas vezes acompanham a parentalidade.",
+      "proof_of_care": null
+    },
+    {
+      "id": "f356deab-323e-4b43-89e8-95ed13a3c908",
+      "postId": "c3cb8dd9-bb4f-4f29-b37c-90f82d6e4f54",
+      "senderId": "piana_uid_2625dzclec21780254333118",
+      "senderDid": "PIANA-0753CC2F",
+      "receiverId": "piana_uid_2625dzclec21780254333118",
+      "message": "Um dia de cada vez. Sua sensibilidade e amor constroem pontes incríveis para seu filho.",
+      "createdAt": "2026-05-31T19:06:26.493Z",
+      "ai_context": "Essa mensagem de apoio fortalece as redes comunitárias de apoio ao reconhecer a importância da empatia e do amor em momentos de necessidade. Ao compartilhar experiências e sentimentos, as mães se apoiam mutuamente, criando um vínculo de solidariedade e esperança para superar os desafios que enfrentam.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "BkyD5vH2v25xWHxX7RB5jymj8QeVzgT7G57zGEDZnZdWdihYQutvFSivoxdUipPB4pt7L7rnvTKCJ9mvaXLgNi8"
+      }
+    },
+    {
+      "id": "e78de878-df7c-486e-9521-40460c47718a",
+      "postId": "c3cb8dd9-bb4f-4f29-b37c-90f82d6e4f54",
+      "senderId": "piana_uid_s8xr7vwihq1780254483046",
+      "senderDid": "PIANA-83C26689",
+      "receiverId": "piana_uid_2625dzclec21780254333118",
+      "message": "Você é uma mãe maravilhosa e sua dedicação cura e apoia. Estou aqui por você.",
+      "createdAt": "2026-05-31T19:10:05.000Z",
+      "ai_context": "Essa mensagem de apoio fortalece as redes comunitárias de apoio ao demonstrar que há pessoas que compreendem e valorizam a dedicação das mães de crianças atípicas. Ela traz esperança ao mostrar que não está sozinha e que há outras que compartilham experiências semelhantes.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "iA9E3FLXo4KsWkypVYPk5cypiqhVZNyGEYmgwSAqErtoEzMQ1P2CxXQwhUBo8UiEPnVzHoYTKof2ox6MLk4sYTk"
+      }
+    },
+    {
+      "id": "b2c748e3-160a-48c2-8f0f-cdfc0ac60c96",
+      "postId": "e3f27ce0-4eba-4152-aa7b-6ad8b89e9061",
+      "senderId": "piana_uid_a1iizmgsqt1780256841251",
+      "senderDid": "PIANA-2444106C",
+      "receiverId": "piana_uid_s8xr7vwihq1780254483046",
+      "message": "Tudo bem Marilia?",
+      "createdAt": "2026-05-31T19:48:43.201Z",
+      "ai_context": "Essa interação simples de \"Tudo bem Marilia?\" demonstra uma abordagem empática e acolhedora, mostrando que a mãe está lá para ouvir e apoiar, sem julgamentos. Isso fortalece as redes comunitárias de apoio, criando um ambiente de confiança e segurança, onde as mães podem compartilhar suas experiências e se sentir não só ouvidas, mas também compreendidas.",
+      "proof_of_care": {
+        "issued": true,
+        "badge": "acolhedora",
+        "solanaTx": "3eozrXi9rTSdMT2S6JxeXmTvo4c2j4HPk6NccWgGkHMaADyHNewWkt4hmVr2hJAmieoEqFiZhFSsE9HBBwMd4tcp"
+      }
+    }
+  ],
   "proof_of_care": [
     {
-      "id": "6dd91dcb-3313-4404-88c4-3dcac0ab6126",
-      "userId": "piana_uid_h6pescdyd81779511836595",
+      "id": "2e85f9e6-9e34-4026-9537-424b16223e7a",
+      "userId": "piana_uid_xmp96qmlrg1779550449257",
       "badge": "pioneira",
-      "solanaTx": "2hK2BqP3LCLkipbtnqU5jXE57WnRig1mg4N7jtEs6hZsnBTgPY2uu21LykUkzuDnpbFa6GsikVrseXNQvqZBn3xa",
-      "createdAt": "2026-05-23T04:51:09.460Z",
+      "solanaTx": "4snNyY4ni4ivM8RLX9ujZYtmYiBpHWdYTVNnVDtdmrhiVdFh3Wixx3hVLMvoJtJLgVenyjqh9wfBSdAsgeP5UoMJ",
+      "createdAt": "2026-05-23T15:34:25.797Z",
+      "status": "synced"
+    },
+    {
+      "id": "bfc35738-a707-488a-a701-3b3323990ec1",
+      "userId": "piana_uid_xmp96qmlrg1779550449257",
+      "badge": "guardia",
+      "solanaTx": "51JN9aZWGdH9frvEfji6V1wrAh77PBgRyMxJvngdNvqBn4Pruq5nTaGmvo3hFnBDnt2uE1SFfCJZ3UKxw7ubL4M3",
+      "createdAt": "2026-05-23T15:34:42.492Z",
+      "status": "synced"
+    },
+    {
+      "id": "e200672f-f4b1-4ebe-b3bf-effeeba91ea6",
+      "userId": "piana_uid_s2w2sru38rg1779550666318",
+      "badge": "pioneira",
+      "solanaTx": "61f5MUJxtwt9WbuGqq8geTU1qzQHo4SP4jErMiqACijoYWaxXRjhe7PDyWNTZrkVasLhMex1Pm24h7jbLzWN9xkQ",
+      "createdAt": "2026-05-23T15:39:24.880Z",
+      "status": "synced"
+    },
+    {
+      "id": "c0af9520-894d-4811-90fe-56c63bbd69f5",
+      "userId": "piana_uid_s2w2sru38rg1779550666318",
+      "badge": "narradora",
+      "solanaTx": "3pc1wrfREVtEnX4okncFLs6L2NffDAcRBAf95fdvTQA5HGugqHpwFprd24D8beKidde4jgqDYe3QxTR6jStuLvAr",
+      "createdAt": "2026-05-23T15:47:00.241Z",
+      "status": "synced"
+    },
+    {
+      "id": "405aa0dd-6070-4dea-ac9e-97c9c9984f77",
+      "userId": "piana_uid_g26ac9rjqoa1779558745341",
+      "badge": "guardia",
+      "solanaTx": "8mBckjKYQgwHEH21TX5CzSeibbnBK7QVDxsUmQHDLu6bxHm7V48LE7VTuwcbk4mwGZUHfiyx7PPNGZ7inQLSwKi",
+      "createdAt": "2026-05-23T17:53:00.021Z",
+      "status": "synced"
+    },
+    {
+      "id": "41d75036-a81f-4b2c-835d-5d883fa657e9",
+      "userId": "piana_uid_g26ac9rjqoa1779558745341",
+      "badge": "pioneira",
+      "solanaTx": "3DzHpfP5iokh27BZNEwEmmzpanBojJ4v5u6s7LSjDJ8YigouTmRSe4ZDYJp5QEueqy8J5ggTeaqoVwKGNbPF9L4",
+      "createdAt": "2026-05-23T17:53:09.849Z",
+      "status": "synced"
+    },
+    {
+      "id": "0c09a4b1-e050-418b-b106-12ff498735d3",
+      "userId": "piana_uid_g26ac9rjqoa1779558745341",
+      "badge": "acolhedora",
+      "solanaTx": "49MW89VAApvzHjGxi7vZ8XeSwLZMFSk3dccSoepYgHniHXtn2iMwKbyunTnhCYTZU3XT25K7NiKTyksMFAAJEJtS",
+      "createdAt": "2026-05-23T17:53:39.777Z",
+      "status": "synced"
+    },
+    {
+      "id": "db266db6-75b8-4917-a8d1-23a42c5719ad",
+      "userId": "piana_uid_2625dzclec21780254333118",
+      "badge": "narradora",
+      "solanaTx": "67Dv17vKLBuozH7xQk9U5F3eW1rLJXDj1c7VL2UdyVDYe2do5egB1PPx3UVzV2exkA6GNdUXPgz7s6NkKHShsxsF",
+      "createdAt": "2026-05-31T19:05:57.931Z",
+      "status": "synced"
+    },
+    {
+      "id": "e3d92fab-c296-4dcd-acb9-51e2d31b53b9",
+      "userId": "piana_uid_2625dzclec21780254333118",
+      "badge": "acolhedora",
+      "solanaTx": "BkyD5vH2v25xWHxX7RB5jymj8QeVzgT7G57zGEDZnZdWdihYQutvFSivoxdUipPB4pt7L7rnvTKCJ9mvaXLgNi8",
+      "createdAt": "2026-05-31T19:06:24.824Z",
+      "status": "synced"
+    },
+    {
+      "id": "ee85d369-2d8f-4275-bda2-6e8665fb967a",
+      "userId": "piana_uid_s8xr7vwihq1780254483046",
+      "badge": "narradora",
+      "solanaTx": "2WJGkBpRwbdWWRYQLjmWSe1dadPJW91YyEU84z9AW3Zefe4hsPZ9ZchQXxqGDYzt3UdJYsNeg2JJRXCYzCeDzD6g",
+      "createdAt": "2026-05-31T19:08:43.300Z",
+      "status": "synced"
+    },
+    {
+      "id": "05ea5d79-bd61-408d-a0dd-c3b24a6a10df",
+      "userId": "piana_uid_s8xr7vwihq1780254483046",
+      "badge": "pioneira",
+      "solanaTx": "3bf138mfYVbGmpoqQnHpuahAbw7r2FaomcEjUg3JrxvRqPVm1daCFGb5ZbxJSPcqYdqcCv3WriXQtPyB2USLUqTN",
+      "createdAt": "2026-05-31T19:09:13.258Z",
+      "status": "synced"
+    },
+    {
+      "id": "7c0300dd-1036-4dde-a9eb-4dfdc97d7eef",
+      "userId": "piana_uid_s8xr7vwihq1780254483046",
+      "badge": "acolhedora",
+      "solanaTx": "iA9E3FLXo4KsWkypVYPk5cypiqhVZNyGEYmgwSAqErtoEzMQ1P2CxXQwhUBo8UiEPnVzHoYTKof2ox6MLk4sYTk",
+      "createdAt": "2026-05-31T19:10:03.325Z",
+      "status": "synced"
+    },
+    {
+      "id": "cac69d5d-e281-4c22-8e36-b50cded79697",
+      "userId": "piana_uid_a1iizmgsqt1780256841251",
+      "badge": "narradora",
+      "solanaTx": "4UEghV8qAreGkbYaKVQHGpVJxp7kFaR26QnWRYk5e5ZqKjbXdyDgnupoPrUFAtYEuJXBkZmeCC2HGMdt3xtzVZzK",
+      "createdAt": "2026-05-31T19:48:22.665Z",
+      "status": "synced"
+    },
+    {
+      "id": "d0bcc7ae-6b7b-45ff-a6e0-497f6d4dcd7d",
+      "userId": "piana_uid_a1iizmgsqt1780256841251",
+      "badge": "acolhedora",
+      "solanaTx": "3eozrXi9rTSdMT2S6JxeXmTvo4c2j4HPk6NccWgGkHMaADyHNewWkt4hmVr2hJAmieoEqFiZhFSsE9HBBwMd4tcp",
+      "createdAt": "2026-05-31T19:48:41.871Z",
       "status": "synced"
     }
   ],
   "assistant_messages": [
     {
-      "id": "8a1e83aa-e41e-4103-8157-e2e77f2cc17a",
-      "userId": "piana_uid_h6pescdyd81779511836595",
-      "role": "user",
-      "content": "Ola",
-      "createdAt": "2026-05-23T04:51:09.282Z"
-    },
-    {
-      "id": "36da0fbb-625f-40de-9e87-c076ea9d016a",
-      "userId": "piana_uid_h6pescdyd81779511836595",
-      "role": "assistant",
-      "content": "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.",
-      "createdAt": "2026-05-23T04:51:09.459Z"
-    },
-    {
-      "id": "ab6739cc-3624-44a1-95b6-5089b459fbad",
-      "userId": "piana_uid_h6pescdyd81779511836595",
-      "role": "user",
-      "content": "ola",
-      "createdAt": "2026-05-23T04:55:21.528Z"
-    },
-    {
-      "id": "c685b53e-c85d-4bde-a98a-f6db0c005241",
-      "userId": "piana_uid_h6pescdyd81779511836595",
-      "role": "assistant",
-      "content": "Uma nova mensagem! Estou aqui para te ouvir e te oferecer um abraço virtual. O que está acontecendo hoje? Você precisa de alguém para conversar?",
-      "createdAt": "2026-05-23T04:55:22.319Z"
-    },
-    {
-      "id": "19f2c672-0cf4-4afc-be47-225f45bb4381",
-      "userId": "piana_uid_h6pescdyd81779511836595",
+      "id": "8e3993a4-5ae9-4707-9610-21b0ea850e3a",
+      "userId": "piana_uid_xmp96qmlrg1779550449257",
       "role": "user",
       "content": "oi",
-      "createdAt": "2026-05-23T04:56:44.389Z"
+      "createdAt": "2026-05-23T15:34:25.072Z"
     },
     {
-      "id": "8f1713e2-58c9-4abf-a896-9f87324b5142",
-      "userId": "piana_uid_h6pescdyd81779511836595",
+      "id": "f6aaf8a9-a795-4188-a0bc-469da0e9b4d1",
+      "userId": "piana_uid_xmp96qmlrg1779550449257",
       "role": "assistant",
-      "content": "Seja bem-vinda! Estou aqui para te escutar e te oferecer apoio. O que está acontecendo em sua vida? Quer falar sobre sua criança ou sobre algo que está te preocupando? Estou aqui para ouvir sem julgamentos.",
-      "createdAt": "2026-05-23T04:56:45.027Z"
+      "content": "Olá, querida mãe! É um prazer conectar com você aqui na Conexão Piana. Como posso ajudar você hoje? Quer falar sobre alguma coisa que está te preocupando ou te faz sentir sozinha? Estou aqui para ouvir e te apoiar.",
+      "createdAt": "2026-05-23T15:34:25.795Z"
     },
     {
-      "id": "f01151a8-ee95-457e-9835-c4409a053b39",
-      "userId": "piana_uid_h6pescdyd81779511836595",
+      "id": "72e10043-71fb-45e9-8792-d84a21780530",
+      "userId": "piana_uid_s2w2sru38rg1779550666318",
       "role": "user",
-      "content": "quem é voce?",
-      "createdAt": "2026-05-23T04:56:51.235Z"
+      "content": "ola",
+      "createdAt": "2026-05-23T15:39:24.126Z"
     },
     {
-      "id": "c5a23f41-3ae4-4591-a46b-972121be4602",
-      "userId": "piana_uid_h6pescdyd81779511836595",
+      "id": "97c6ccaa-20ee-4f22-960e-c21a3bdd9ff1",
+      "userId": "piana_uid_s2w2sru38rg1779550666318",
       "role": "assistant",
-      "content": "Sou uma assistente de suporte emocional da plataforma Conexão Piana. Estou aqui para te oferecer apoio e acolhimento em sua jornada como mãe de uma criança com necessidades especiais. Não sou uma profissional de saúde, mas sim uma ouvida amiga que está aqui para te escutar e te ajudar a encontrar recursos e apoio quando precisar.",
-      "createdAt": "2026-05-23T04:56:51.694Z"
+      "content": "Olá, minha querida! Estou aqui para te acolher e ouvir o que você precisa. Seja bem-vinda à Conexão Piana. Como está se sentindo hoje?",
+      "createdAt": "2026-05-23T15:39:24.878Z"
+    },
+    {
+      "id": "b4aee122-9a10-407e-be48-909422313a88",
+      "userId": "piana_uid_g26ac9rjqoa1779558745341",
+      "role": "user",
+      "content": "Estou me sentindo extremamente sobrecarregada com a rotina de terapias e consultas essa semana. Sinto que não dou conta de tudo sozinha.",
+      "createdAt": "2026-05-23T17:53:08.980Z"
+    },
+    {
+      "id": "23dfc495-2f24-4974-abcd-e9f31a5f8841",
+      "userId": "piana_uid_g26ac9rjqoa1779558745341",
+      "role": "assistant",
+      "content": "Entendo perfeitamente como você se sente. É completamente normal sentir-se sobrecarregada com a rotina de cuidados e acompanhamentos. É um grande desafio, mas você não está sozinha!\n\nLembre-se de que você é uma mãe incrível e capaz, e que está fazendo o melhor para sua criança. É importante lembrar que você não precisa carregar sozinha essa carga. Há pessoas e recursos disponíveis para ajudá-la.\n\nSe precisar, não hesite em compartilhar seus sentimentos e preocupações com seus familiares, amigos ou um profissional de saúde. Eles podem oferecer apoio emocional, orientação e até mesmo ajudar a encontrar soluções para a sobrecarga.\n\nLembre-se de respirar fundo, de se cuidar e de pedir ajuda quando precisar. Você está fazendo um ótimo trabalho e está sendo uma mãe amorosa e dedicada.",
+      "createdAt": "2026-05-23T17:53:09.848Z"
+    },
+    {
+      "id": "58207f5f-5107-4f07-a577-c275ba3e7145",
+      "userId": "piana_uid_s8xr7vwihq1780254483046",
+      "role": "user",
+      "content": "Como posso conversar de forma pacífica com a escola do meu filho para exigir que eles façam adaptações de inclusão que ele tem direito?",
+      "createdAt": "2026-05-31T19:09:09.741Z"
+    },
+    {
+      "id": "01ad7daf-413c-4d5f-853d-449b8c1b4035",
+      "userId": "piana_uid_s8xr7vwihq1780254483046",
+      "role": "assistant",
+      "content": "Entendo que você está procurando por uma maneira de conversar com a escola do seu filho de forma pacífica e eficaz. Aqui estão algumas dicas que podem ajudar:\n\n1. **Preparação**: Antes da conversa, prepare-se com informações sobre as necessidades do seu filho e os direitos dele como estudante com deficiência. O Ministério da Educação tem um guia de inclusão que pode ser útil.\n2. **Agendar uma reunião**: Peça para marcar uma reunião com o diretor ou o coordenador de inclusão da escola. Isso mostrará que você valoriza a comunicação e a colaboração.\n3. **Ser claro e conciso**: Durante a reunião, seja claro e conciso ao explicar as necessidades do seu filho e o que você espera da escola. Use exemplos específicos de como a inclusão pode ser feita.\n4. **Usar \"eu\" em vez de \"você\"**: Em vez de dizer \"você deve fazer isso\", diga \"eu estou preocupado com o bem-estar do meu filho e acredito que o seguinte possa ajudar\". Isso ajuda a manter a conversa focada nas necessidades do seu filho.\n5. **Escutar atentamente**: Certifique-se de ouvir atentamente as preocupações e sugestões da escola. Ela pode ter conhecimento ou experiências que você não tem.\n6. **Focar em soluções**: Em vez de se concentrar nos problemas, tente encontrar soluções juntos. Pergunte \"O que podemos fazer para garantir que o meu filho se sinta seguro e apoiado na escola?\"\n7. **Reforçar os direitos**: Se a escola não estiver cedendo, lembre-a dos direitos do seu filho como estudante com deficiência. Pode ser útil citar leis ou regulamentos que protegem a inclusão.\n8. **Ter um plano de ação**: Antes de sair da reunião, certifique-se de que vocês entendam o que precisa ser feito e quem é responsável por cada tarefa.\n\nExemplo de frase que você pode usar:\n\n\"Estou preocupado com o bem-estar do meu filho e acredito que ele precise de algumas adaptações para se sentir seguro e apoiado na escola. Posso sugerir que a escola considere a possibilidade de... E você, o que você acha que poderia ser feito para ajudar o meu filho?\"\n\nLembre-se de que a conversa é um processo e pode levar tempo para alcançar um acordo. Se você precisar de apoio, não hesite em procurar o suporte de outras pessoas, como um advogado ou um grupo de apoio.\n\nVocê está preparada para essa conversa? Tenho a certeza que você pode fazer uma grande diferença na vida do seu filho!",
+      "createdAt": "2026-05-31T19:09:13.255Z"
     }
   ]
 }

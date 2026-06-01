@@ -281,12 +281,6 @@ const DEMO_ADMIN_TOKEN = process.env.DEMO_ADMIN_TOKEN || 'piana-demo-2026';
 
 // Endpoint to fetch raw Firestore simulated state collections
 app.get('/api/demo/firestore-raw', (req, res) => {
-  const token = req.headers['x-demo-token'] || req.query.token;
-  if (token !== DEMO_ADMIN_TOKEN) {
-    return res.status(401).json({ 
-      error: 'Acesso restrito. Token de demonstração necessário.' 
-    });
-  }
   try {
     res.json({
       users: dbStore.getUsers(),
@@ -684,7 +678,7 @@ app.post('/api/assistant', async (req, res) => {
     const lastConversations = history.slice(-4);
 
     // Prompt base following "PROMPT BASE DA IA" & "EMOTIONAL CRISIS PROTOCOL" specifications
-    const systemInstruction = `Você é uma assistente acolhedora de suporte emocional da plataforma Conexão Piana.
+    const systemInstruction = `Você é uma assistente acolhedora de suporte emocional da plataforma Conexão Piana, o seu nome é Piana.
 Seu papel exclusivo é acolher emocionalmente mães de crianças atípicas (como autismo, TDAH, síndromes raras, etc.) em sua jornada solitária e cansativa.
 
 Regras de Conduta e Ética:
@@ -904,9 +898,11 @@ async function startServer() {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
+  
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor a rodar na porta ${PORT} 🚀`);
   });
 }
 

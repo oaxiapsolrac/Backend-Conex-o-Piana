@@ -15,6 +15,7 @@ import CentralTransparencia from './components/CentralTransparencia';
 import MaternalProfileModal from './components/MaternalProfileModal';
 import AppLogo from './components/AppLogo';
 import { User, Consent, ProofOfCare } from './types';
+import BadgeUnlockCelebration from './components/BadgeUnlockCelebration';
 
 function DidAvatarMin({ did }: { did: string }) {
   const chars = did.replace(/[^a-zA-Z0-9]/g, '');
@@ -44,6 +45,14 @@ export default function App() {
   const [consents, setConsents] = useState<Consent[]>([]);
   const [proofs, setProofs] = useState<ProofOfCare[]>([]);
   const [isInitializing, setIsInitializing] = useState(true);
+
+  // Celebrate newly earned rewards with beautiful light animations (Mãe Conquistas)
+  const [unlockedBadgeToCelebrate, setUnlockedBadgeToCelebrate] = useState<{
+    badge: 'acolhedora' | 'narradora' | 'pioneira' | 'empatica' | 'guardia';
+    solanaTx?: string;
+  } | null>(null);
+  const [knownBadgeIds, setKnownBadgeIds] = useState<Set<string>>(new Set());
+  const [initialBadgesLoaded, setInitialBadgesLoaded] = useState(false);
 
   // Demotoolbar state
   // DEMO: bypassAgeCheck=true desativa a regra dos 10 minutos
@@ -87,11 +96,22 @@ export default function App() {
           const statusData = await statusResp.json();
           
           setConsents(statusData.consents.filter((c: Consent) => c.userId === userData.uid));
-          setProofs(statusData.proofOfCare.filter((p: ProofOfCare) => p.userId === userData.uid));
+          
+          const userProofs = statusData.proofOfCare.filter((p: ProofOfCare) => p.userId === userData.uid);
+          setProofs(userProofs);
+          
+          // Seed initial known badges so we don't flash previously unlocked achievement screens on load
+          setKnownBadgeIds(new Set(userProofs.map((p: any) => p.id)));
+          setInitialBadgesLoaded(true);
+        } else {
+          setInitialBadgesLoaded(true);
         }
+      } else {
+        setInitialBadgesLoaded(true);
       }
     } catch (e) {
       console.error('Error recovering session:', e);
+      setInitialBadgesLoaded(true);
     } finally {
       setIsInitializing(false);
     }
@@ -129,6 +149,10 @@ export default function App() {
       if (!userData.error) {
         localStorage.setItem('piana_user_uid', uid);
         setUser(userData);
+        setConsents([]);
+        setProofs([]);
+        setKnownBadgeIds(new Set());
+        setInitialBadgesLoaded(true);
         triggerToast('Sessão anônima de acolhimento criada com sucesso! Assinatura Web3 gerada.');
       }
     } catch (e) {
@@ -177,6 +201,36 @@ export default function App() {
     }
   };
 
+  // Watch for newly unlocked achievements actively earned inside the session
+  useEffect(() => {
+    if (proofs.length === 0) return;
+
+    if (!initialBadgesLoaded) {
+      const ids = new Set(proofs.map(p => p.id));
+      setKnownBadgeIds(ids);
+      setInitialBadgesLoaded(true);
+      return;
+    }
+
+    const newUnlocks = proofs.filter(p => !knownBadgeIds.has(p.id));
+    if (newUnlocks.length > 0) {
+      const latestUnlock = newUnlocks[0];
+      
+      // Update our recognized list of earned IDs so we don't duplicate
+      setKnownBadgeIds(prev => {
+        const next = new Set(prev);
+        newUnlocks.forEach(p => next.add(p.id));
+        return next;
+      });
+
+      // Fire up the magnificent celebration pop-up overlay with rotating rays & glitter sparkles!
+      setUnlockedBadgeToCelebrate({
+        badge: latestUnlock.badge,
+        solanaTx: latestUnlock.solanaTx
+      });
+    }
+  }, [proofs, initialBadgesLoaded, knownBadgeIds]);
+
   // Reset database for clear testing
   const handleReset = async () => {
     if (confirm('Deseja realmente resetar todas as tabelas simuladas e apagar os registros do banco?')) {
@@ -186,6 +240,9 @@ export default function App() {
         setUser(null);
         setConsents([]);
         setProofs([]);
+        setKnownBadgeIds(new Set());
+        setInitialBadgesLoaded(false);
+        setUnlockedBadgeToCelebrate(null);
         setActiveTab('feed');
         setIsExplorerOpen(false);
         triggerToast('Sessão encerrada de forma limpa. Banco de dados do MVP reinicializado.', 'success');
@@ -200,6 +257,9 @@ export default function App() {
     setUser(null);
     setConsents([]);
     setProofs([]);
+    setKnownBadgeIds(new Set());
+    setInitialBadgesLoaded(false);
+    setUnlockedBadgeToCelebrate(null);
     setIsProfileOpen(false);
     triggerToast(
       'Sua conta e todos os dados foram apagados permanentemente com segurança sob regulação da LGPD (Direito ao Esquecimento).',
@@ -386,6 +446,17 @@ export default function App() {
           onAccountDeleted={handleAccountDeleted}
         />
       )}
+
+      {/* Special Badge Unlock Celebration Overlay with radiant lights */}
+      <AnimatePresence>
+        {unlockedBadgeToCelebrate && (
+          <BadgeUnlockCelebration
+            badgeKey={unlockedBadgeToCelebrate.badge}
+            solanaTx={unlockedBadgeToCelebrate.solanaTx}
+            onClose={() => setUnlockedBadgeToCelebrate(null)}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Humble Humanity Footer */}
       <footer className="bg-white border-t border-slate-150 py-5 text-center text-[10px] text-slate-400 font-sans tracking-wide">
