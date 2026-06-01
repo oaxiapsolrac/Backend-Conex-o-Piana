@@ -5,7 +5,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { User, Consent, Post, Interaction, ProofOfCare, AssistantMessage } from './types';
+import { User, Consent, Post, Interaction, ProofOfCare, AssistantMessage } from './types.ts';
 
 const DB_FILE = path.join(process.cwd(), 'piana-db.json');
 
