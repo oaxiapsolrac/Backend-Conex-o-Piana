@@ -15,7 +15,7 @@ import express from 'express';
 import path from 'path';
 import crypto from 'crypto';
 import { createServer as createViteServer } from 'vite';
-import { dbStore } from './src/backend-db';
+import { dbStore } from './src/backend-db.ts';
 import Groq from 'groq-sdk';
 import dotenv from 'dotenv';
 
@@ -23,7 +23,7 @@ dotenv.config();
 
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
