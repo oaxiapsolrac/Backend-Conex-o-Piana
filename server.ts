@@ -14,7 +14,6 @@ process.on('unhandledRejection', (reason, promise) => {
 import express from 'express';
 import path from 'path';
 import crypto from 'crypto';
-import { createServer as createViteServer } from 'vite';
 import { dbStore } from './src/backend-db.js';
 import Groq from 'groq-sdk';
 import dotenv from 'dotenv';
