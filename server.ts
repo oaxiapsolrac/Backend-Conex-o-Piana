@@ -3,6 +3,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+process.on('uncaughtException', (err) => {
+  console.error('ERRO FATAL NÃO TRATADO:', err);
+  process.exit(1);
+});
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('PROMESSA REJEITADA NÃO TRATADA:', reason);
+  process.exit(1);
+});
 import express from 'express';
 import path from 'path';
 import crypto from 'crypto';
@@ -12,6 +20,7 @@ import Groq from 'groq-sdk';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
 
 const app = express();
 const PORT = 3000;
