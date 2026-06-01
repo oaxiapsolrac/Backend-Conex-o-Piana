@@ -11,18 +11,31 @@ process.on('unhandledRejection', (reason, promise) => {
   console.error('PROMESSA REJEITADA NÃO TRATADA:', reason);
   process.exit(1);
 });
+
 import express from 'express';
 import path from 'path';
 import crypto from 'crypto';
+import cors from 'cors'; // <-- Importação do CORS adicionada aqui
 import { dbStore } from './src/backend-db.js';
 import Groq from 'groq-sdk';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
+
+// --- CONFIGURAÇÃO DE CORS (Liberando o acesso para o Firebase) ---
+app.use(cors({
+  origin: [
+    'http://localhost:5173', 
+    'http://localhost:3000', 
+    'https://conexao-piana.web.app' // <-- Seu frontend Firebase autorizado!
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+// -----------------------------------------------------------------
 
 app.use(express.json());
 
@@ -115,7 +128,7 @@ import bs58 from 'bs58';
 
 async function sendToSolanaMemoProgram(payload: object): Promise<string> {
   const privateKeyStr = process.env.SOLANA_PRIVATE_KEY;
-  const rpcUrl = process.env.SOLANA_RPC_URL || 'https://api.devnet.solana.com'; // DEFINA AQUI!
+  const rpcUrl = process.env.SOLANA_RPC_URL || 'https://api.devnet.solana.com';
 
   if (!privateKeyStr) {
     throw new Error('Chave não configurada.');
@@ -124,7 +137,6 @@ async function sendToSolanaMemoProgram(payload: object): Promise<string> {
   try {
     let secretKey: Uint8Array;
     
-    // Tenta detetar se é um array (formato [123, 45...]) ou string Base58
     if (privateKeyStr.trim().startsWith('[')) {
       secretKey = Uint8Array.from(JSON.parse(privateKeyStr));
     } else {
@@ -134,7 +146,6 @@ async function sendToSolanaMemoProgram(payload: object): Promise<string> {
     const connection = new Connection(rpcUrl, 'confirmed');
     const feePayer = Keypair.fromSecretKey(secretKey);
 
-    // O resto da função continua igual...
     const memoProgramId = new PublicKey(process.env.SOLANA_MEMO_PROGRAM_ID || "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr");
     const memoInstruction = new TransactionInstruction({
       keys: [{ pubkey: feePayer.publicKey, isSigner: true, isWritable: true }],
@@ -158,7 +169,6 @@ async function sendToSolanaMemoProgram(payload: object): Promise<string> {
 }
 // --- API ENDPOINTS ---
 
-// 1. Session and Anonymous Auth Setup (DID Generation)
 app.post('/api/auth/session', (req, res) => {
   try {
     const { uid, simulatedCreatedAt } = req.body;
@@ -166,12 +176,9 @@ app.post('/api/auth/session', (req, res) => {
       return res.status(400).json({ error: 'UID is required' });
     }
 
-    // Check if user already exists
     let user = dbStore.getUser(uid);
 
     if (!user) {
-      // 1. Cadastro Simplificado: DID Simplificado
-      // Format: PIANA-XXXXXXXX (4 bytes random hex in uppercase)
       const randomHex = crypto.randomBytes(4).toString('hex').toUpperCase();
       const did = `PIANA-${randomHex}`;
       const createdAt = simulatedCreatedAt || new Date().toISOString();
@@ -185,7 +192,6 @@ app.post('/api/auth/session', (req, res) => {
   }
 });
 
-// Update User Profile
 app.post('/api/auth/profile', (req, res) => {
   try {
     const { userId, pseudonym, childDiagnosis, childAge, bio, location } = req.body;
@@ -208,7 +214,6 @@ app.post('/api/auth/profile', (req, res) => {
   }
 });
 
-// Retrieve User Profile and Badges by DID
 app.get('/api/users/by-did/:did', (req, res) => {
   try {
     const { did } = req.params;
@@ -218,7 +223,7 @@ app.get('/api/users/by-did/:did', (req, res) => {
     const users = dbStore.getUsers();
     const foundUser = users.find(u => u.did === did);
     if (!foundUser) {
-      return res.status(404).json({ error: 'Esta mãe não foi encontrada ou seus dados foram excluídos conforme o Direito ao Esquecimento da LGPD.' });
+      return res.status(404).json({ error: 'Esta mãe não foi encontrada ou seus dados foram excluídos.' });
     }
     const badges = dbStore.getProofOfCareForUser(foundUser.uid);
     res.json({
@@ -237,14 +242,12 @@ app.get('/api/users/by-did/:did', (req, res) => {
   }
 });
 
-// Erase User Data (LGPD - right to be forgotten / Direito ao Esquecimento)
-// Support both DELETE and POST with route parameters or JSON body for maximum sandboxing/iframe environment safety
 const handleForget = (userIdArg: string | undefined, res: express.Response) => {
   if (!userIdArg) {
     return res.status(400).json({ error: 'userId is required' });
   }
   dbStore.deleteUserData(userIdArg);
-  return res.json({ success: true, message: 'Todos os seus dados foram apagados permanentemente de nossos servidores simulados!' });
+  return res.json({ success: true, message: 'Todos os dados foram apagados permanentemente!' });
 };
 
 app.delete('/api/auth/forget/:userId', (req, res) => {
@@ -272,22 +275,17 @@ app.post('/api/auth/forget', (req, res) => {
   }
 });
 
-// Admin endpoint to reset database for clean demo run
 app.post('/api/demo/reset', (req, res) => {
   dbStore.clear();
   res.json({ status: 'ok', message: 'Database reset successfully' });
 });
 
-// Endpoint to fetch simulated database audit logs (Solana Devnet transactions)
 app.get('/api/demo/blockchain-state', (req, res) => {
   const consents = dbStore.getConsents();
   const proofOfCare = dbStore.getProofOfCare();
   res.json({ consents, proofOfCare });
 });
 
-const DEMO_ADMIN_TOKEN = process.env.DEMO_ADMIN_TOKEN || 'piana-demo-2026';
-
-// Endpoint to fetch raw Firestore simulated state collections
 app.get('/api/demo/firestore-raw', (req, res) => {
   try {
     res.json({
@@ -303,7 +301,6 @@ app.get('/api/demo/firestore-raw', (req, res) => {
   }
 });
 
-// 2. Register LGPD Consent
 app.post('/api/consents', async (req, res) => {
   try {
     const { userId, type } = req.body;
@@ -318,8 +315,6 @@ app.post('/api/consents', async (req, res) => {
 
     const consentType = type || 'lgpd_consent';
     const timestamp = new Date().toISOString();
-
-    // REGRA DO SHA256: Hash obrigatório: SHA256(did + consent_type + timestamp)
     const rawString = user.did + consentType + timestamp;
     const hash = generateSHA256(rawString);
 
@@ -338,18 +333,11 @@ app.post('/api/consents', async (req, res) => {
       if (req.body.simulateError) {
         throw new Error('Simulated Solana network interruption.');
       }
-      // Intentional trial of Solana Memo Program
       transactionId = await sendToSolanaMemoProgram(payload);
     } catch (solanaError: any) {
-      // FALLBACK DA SOLANA OBRIGATÓRIO:
-      // - salvar localmente;
-      // - marcar sincronização pendente;
-      // - registrar erro;
-      // - NÃO travar UX.
       status = 'pending';
       transactionId = `pending_sync_${crypto.randomBytes(8).toString('hex')}`;
-      errorMessage = 'Registro blockchain temporariamente indisponível. Seu consentimento foi salvo com segurança e será sincronizado.';
-      console.warn('Solana registration failed, falling back gracefully:', solanaError.message);
+      errorMessage = 'Registro blockchain temporariamente indisponível. Seu consentimento foi salvo com segurança.';
     }
 
     const consentRecord = dbStore.addConsent({
@@ -371,7 +359,6 @@ app.post('/api/consents', async (req, res) => {
   }
 });
 
-// 3. Community Feed Endpoints
 app.get('/api/posts', (req, res) => {
   try {
     const posts = dbStore.getPosts();
@@ -396,7 +383,7 @@ app.post('/api/posts', async (req, res) => {
     }
 
     if (containsProfanity(content)) {
-      return res.status(400).json({ error: 'Sua publicação contém palavras inadequadas ou ofensivas para nossa comunidade de mães. Por favor, reformule seu texto com empatia.' });
+      return res.status(400).json({ error: 'Sua publicação contém palavras inadequadas ou ofensivas.' });
     }
 
     const user = dbStore.getUser(userId);
@@ -412,12 +399,10 @@ app.post('/api/posts', async (req, res) => {
       createdAt: new Date().toISOString()
     });
 
-    // Check if this is the user's first post to award 'narradora' badge
     const userPosts = dbStore.getPosts().filter(p => p.userId === userId);
     let narratoraBadge = null;
 
     if (userPosts.length === 1) {
-      // First post! Emit narradora badge
       const timestamp = new Date().toISOString();
       const rawPayload = {
         type: 'proof_of_care',
@@ -437,7 +422,6 @@ app.post('/api/posts', async (req, res) => {
       } catch (solanaError: any) {
         status = 'pending';
         solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
-        console.warn('Solana registration for Narrator badge failed, falling back gracefully:', solanaError.message);
       }
 
       narratoraBadge = dbStore.addProofOfCare({
@@ -462,7 +446,6 @@ app.post('/api/posts', async (req, res) => {
   }
 });
 
-// 4. Client Feedback Interactions (Tela 4: Interações de Acolhimento)
 app.post('/api/interactions', async (req, res) => {
   try {
     const { postId, senderId, message, bypassAgeCheck } = req.body;
@@ -471,7 +454,7 @@ app.post('/api/interactions', async (req, res) => {
     }
 
     if (containsProfanity(message)) {
-      return res.status(400).json({ error: 'A sua mensagem de acolhimento contém termos inadequados para o nosso ambiente de apoio mútuo. Por favor, envie uma mensagem com empatia e carinho.' });
+      return res.status(400).json({ error: 'A sua mensagem contém termos inadequados.' });
     }
 
     const sender = dbStore.getUser(senderId);
@@ -479,12 +462,10 @@ app.post('/api/interactions', async (req, res) => {
       return res.status(404).json({ error: 'Sender user not found' });
     }
 
-    // Retrieve post receiver ID
     const posts = dbStore.getPosts();
     const post = posts.find((p) => p.id === postId);
     const receiverId = post ? post.userId : '';
 
-  
     let aiContext = 'Interações acolhedoras fortalecem redes de apoio emocional.';
     try {
       if (process.env.GROQ_API_KEY) {
@@ -492,10 +473,10 @@ app.post('/api/interactions', async (req, res) => {
           messages: [
             {
               role: 'user',
-              content: `Analise brevemente o texto de apoio enviado por uma mãe de criança atípica para outra: "${message}". Gere um parágrafo acolhedor, empático e curto (máximo de 150 caracteres) em português explicando como esta interação fortalece as redes comunitárias de apoio e traz esperança. Responda apenas com a análise direta, sem aspas.`
+              content: `Analise brevemente o texto de apoio enviado: "${message}". Gere um parágrafo acolhedor, empático e curto (máximo de 150 caracteres). Responda apenas com a análise direta, sem aspas.`
             }
           ],
-          model: 'llama-3.1-8b-instant', // Modelo rápido e eficiente da Groq
+          model: 'llama-3.1-8b-instant',
           temperature: 0.7,
         });
 
@@ -504,27 +485,17 @@ app.post('/api/interactions', async (req, res) => {
         }
       }
     } catch (aiError: any) {
-      console.error('Groq call failed during interaction analyzing, using fallback context:', aiError.message);
+      console.error('Groq call failed during interaction analyzing:', aiError.message);
     }
 
-    // Step B: REGRAS DETERMINÍSTICAS (Deterministiic Rules check for Proof of Care)
-    // 1. Conta criada há mais de 10 minutos
     const now = new Date();
     const createdTime = new Date(sender.createdAt);
     const diffMinutes = (now.getTime() - createdTime.getTime()) / (1000 * 60);
     const isAccountOldEnough = diffMinutes >= 10 || bypassAgeCheck === true;
 
-    // 2. Interação possuir mais de 15 caracteres
     const hasEnoughCharacters = message.trim().length > 15;
-
-    // 3. Usuária sem posts removidos (posts labeled as spam/abuse)
-    // For this simulation, we consider the user is always premium unless explicitly flagged
-    // MVP: Regra simulada. Implementação completa conectaria
-    // ao histórico de moderação para verificar posts removidos.
-    // Declarar abertamente na apresentação se perguntado.
     const hasNoRemovedPosts = true; 
 
-    // 4. Não existir badge duplicado nas últimas 24 horas for this sender
     const userBadges = dbStore.getProofOfCareForUser(senderId);
     const hasNoRecentAcolhedoraBadge = !userBadges.some((b) => {
       if (b.badge !== 'acolhedora') return false;
@@ -535,7 +506,6 @@ app.post('/api/interactions', async (req, res) => {
 
     const isPoCEligible = isAccountOldEnough && hasEnoughCharacters && hasNoRemovedPosts && hasNoRecentAcolhedoraBadge;
 
-    // Check for 'empatica' badge (supported 3+ different mothers)
     const userInteractions = dbStore.getInteractions().filter((i) => i.senderId === senderId);
     const uniqueReceiversSupported = new Set(userInteractions.map((i) => i.receiverId));
     const hasEpaticaBadge = userBadges.some((b) => b.badge === 'empatica');
@@ -545,7 +515,6 @@ app.post('/api/interactions', async (req, res) => {
     let empaticaBadgePayload = null;
 
     if (isPoCEligible) {
-      // Setup payload matching spec
       const timestamp = new Date().toISOString();
       const rawPayload = {
         type: 'proof_of_care',
@@ -565,10 +534,8 @@ app.post('/api/interactions', async (req, res) => {
       } catch (solanaError: any) {
         status = 'pending';
         solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
-        console.warn('Solana registration for Proof of Care failed, falling back gracefully:', solanaError.message);
       }
 
-      // Add to proof of care list
       dbStore.addProofOfCare({
         id: crypto.randomUUID(),
         userId: senderId,
@@ -585,7 +552,6 @@ app.post('/api/interactions', async (req, res) => {
       };
     }
 
-    // Award empatica badge if conditions are met
     if (shouldAwardEpatica) {
       const timestamp = new Date().toISOString();
       const rawPayload = {
@@ -606,7 +572,6 @@ app.post('/api/interactions', async (req, res) => {
       } catch (solanaError: any) {
         status = 'pending';
         solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
-        console.warn('Solana registration for Empática badge failed, falling back gracefully:', solanaError.message);
       }
 
       dbStore.addProofOfCare({
@@ -625,7 +590,6 @@ app.post('/api/interactions', async (req, res) => {
       };
     }
 
-    // Save dynamic interactive record
     const interactionObj = dbStore.addInteraction({
       id: crypto.randomUUID(),
       postId,
@@ -638,7 +602,6 @@ app.post('/api/interactions', async (req, res) => {
       proof_of_care: proofOfCarePayload
     });
 
-    // Send payload response matching technical doc formatting
     res.json({
       interactionId: interactionObj.id,
       saved: true,
@@ -663,7 +626,6 @@ app.post('/api/interactions', async (req, res) => {
   }
 });
 
-// 5. Intelligent Acolhimento Assistant Chat
 app.post('/api/assistant', async (req, res) => {
   try {
     const { userId, message } = req.body;
@@ -671,7 +633,6 @@ app.post('/api/assistant', async (req, res) => {
       return res.status(400).json({ error: 'userId and message are required' });
     }
 
-    // Save prompt to message history
     dbStore.addAssistantMessage({
       id: crypto.randomUUID(),
       userId,
@@ -680,12 +641,9 @@ app.post('/api/assistant', async (req, res) => {
       createdAt: new Date().toISOString()
     });
 
-    // Get last 3 assistant messages for context retrieval (excluding current message)
     const history = dbStore.getAssistantMessagesForUser(userId);
-    // Grab the last 4 elements (the 3 historic ones + the 1 we just added)
     const lastConversations = history.slice(-4);
 
-    // Prompt base following "PROMPT BASE DA IA" & "EMOTIONAL CRISIS PROTOCOL" specifications
     const systemInstruction = `Você é uma assistente acolhedora de suporte emocional da plataforma Conexão Piana, o seu nome é Piana.
 Seu papel exclusivo é acolher emocionalmente mães de crianças atípicas (como autismo, TDAH, síndromes raras, etc.) em sua jornada solitária e cansativa.
 
@@ -699,15 +657,12 @@ PROTOCOL DE CRISE EMOCIONAL:
 Se detectar qualquer indício de sofrimento emocional intenso, desespero agudo ou ideação de autolesão/morte:
 - Responda de forma extremamente acolhedora, sensível e sem julgamentos.
 - Recomende enfaticamente ajuda profissional especializada.
-- Ofereça explicitamente o canal de atendimento e contato do CVV (Centro de Valorização da Vida - Telefone 188).
-Mensagem Exemplo do Protocolo de Crise:
-"Você não precisa passar por isso sozinha. Se estiver em sofrimento intenso, procure apoio profissional qualificado. O CVV está disponível 24 horas por dia de forma gratuita e confidencial pelo telefone 188."`;
+- Ofereça explicitamente o canal de atendimento e contato do CVV (Centro de Valorização da Vida - Telefone 188).`;
 
     let aiReply = "Sinto muito por estar se sentindo assim. Lembre-se de que você é uma mãe incrível e não está sozinha. Como rede de apoio, estamos aqui para te escutar.";
 
     try {
       if (process.env.GROQ_API_KEY) {
-        // Mapeia o histórico para o formato da Groq (Role 'model' vira 'assistant')
         const messages: any[] = [
           { role: 'system', content: systemInstruction },
           ...lastConversations.map((msg) => ({
@@ -727,10 +682,9 @@ Mensagem Exemplo do Protocolo de Crise:
         }
       }
     } catch (aiError: any) {
-      console.error('Groq call failed during assistant chat, returning compassionate default:', aiError.message);
+      console.error('Groq call failed during assistant chat:', aiError.message);
     }
 
-    // Save assistant response to history
     const assistantMessage = dbStore.addAssistantMessage({
       id: crypto.randomUUID(),
       userId,
@@ -739,11 +693,9 @@ Mensagem Exemplo do Protocolo de Crise:
       createdAt: new Date().toISOString()
     });
 
-    // Check if this is user's first assistant interaction to award 'pioneira' badge
     const allUserMessages = dbStore.getAssistantMessagesForUser(userId);
     let pioneiraBadge = null;
 
-    // If there are exactly 2 messages (user's message + assistant response), it's the first interaction
     if (allUserMessages.length === 2) {
       const user = dbStore.getUser(userId);
       if (user) {
@@ -766,7 +718,6 @@ Mensagem Exemplo do Protocolo de Crise:
         } catch (solanaError: any) {
           status = 'pending';
           solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
-          console.warn('Solana registration for Pioneira badge failed, falling back gracefully:', solanaError.message);
         }
 
         pioneiraBadge = dbStore.addProofOfCare({
@@ -790,7 +741,6 @@ Mensagem Exemplo do Protocolo de Crise:
   }
 });
 
-// Fetch user's chat history
 app.get('/api/assistant/history/:userId', (req, res) => {
   try {
     const { userId } = req.params;
@@ -801,7 +751,6 @@ app.get('/api/assistant/history/:userId', (req, res) => {
   }
 });
 
-// Fetch detailed log data for interactive Web3 audit dashboard
 app.get('/api/posts/:postId/interactions', (req, res) => {
   try {
     const { postId } = req.params;
@@ -819,7 +768,6 @@ app.get('/api/posts/:postId/interactions', (req, res) => {
   }
 });
 
-// 6. Validate blockchain signatures to award 'guardia' badge
 app.post('/api/proofs/validate-on-chain', async (req, res) => {
   try {
     const { userId, simulateError } = req.body;
@@ -832,7 +780,6 @@ app.post('/api/proofs/validate-on-chain', async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Check if user already has guardia badge
     const userBadges = dbStore.getProofOfCareForUser(userId);
     const hasGuardiaBadge = userBadges.some((b) => b.badge === 'guardia');
 
@@ -840,13 +787,11 @@ app.post('/api/proofs/validate-on-chain', async (req, res) => {
       return res.json({ success: false, message: 'Você já possui a medalha Guardiã da Transparência', badge: null });
     }
 
-    // Get user's consents to validate
     const userConsents = dbStore.getConsentsForUser(userId);
     if (userConsents.length === 0) {
       return res.json({ success: false, message: 'Nenhum consentimento para validar', badge: null });
     }
 
-    // Award guardia badge for validating signatures
     const timestamp = new Date().toISOString();
     const rawPayload = {
       type: 'proof_of_care',
@@ -866,7 +811,6 @@ app.post('/api/proofs/validate-on-chain', async (req, res) => {
     } catch (solanaError: any) {
       status = 'pending';
       solanaTx = `pending_poc_${crypto.randomBytes(8).toString('hex')}`;
-      console.warn('Solana registration for Guardia badge failed, falling back gracefully:', solanaError.message);
     }
 
     const guardiaBadge = dbStore.addProofOfCare({
@@ -890,23 +834,8 @@ app.post('/api/proofs/validate-on-chain', async (req, res) => {
   }
 });
 
-// --- ROUTING SETUP (VITE / STATIC SITES) ---
-
+// --- INICIALIZAÇÃO DO SERVIDOR ---
 async function startServer() {
-  if (process.env.NODE_ENV !== 'production') {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: 'spa',
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    
-  }
-  
-
-  const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`Servidor a rodar na porta ${PORT} 🚀`);
   });
