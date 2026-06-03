@@ -554,7 +554,7 @@ export default function FeedComunitario({
               <span className="text-[10px] text-stone-400 font-bold uppercase tracking-wider block">Minhas Medalhas ({myProofsCount}/5)</span>
               <span className="text-[9px] text-emerald-500 font-bold flex items-center gap-1 bg-emerald-55/10 px-1.5 py-0.5 rounded-md">
                 <span className="h-1 w-1 bg-emerald-550 rounded-full animate-ping"></span>
-                Web3 NFT Ativo
+                Web3 Badge Ativo
               </span>
             </div>
             
@@ -588,7 +588,7 @@ export default function FeedComunitario({
                           </p>
                           {isEarned && (
                             <span className="text-[8px] bg-emerald-500/10 text-emerald-700 px-1 py-0.2 rounded font-black uppercase tracking-wider font-mono">
-                              NFT
+                              Badge
                             </span>
                           )}
                         </div>
